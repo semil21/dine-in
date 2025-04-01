@@ -4,6 +4,7 @@ import { connectDatabase } from "./database/database";
 import superAdminRouter from "./route/super-admin/super-admin.route";
 import restaurantSuperAdminRouter from "./route/super-admin/restaurant/restaurant-super-admin.route";
 import ultraAdminRouter from "./route/ultra-admin/ultra-admin.route";
+import masterCategoryRouter from "./route/ultra-admin/master-category/master-category.route";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ connectDatabase();
 
 // ultra admin routes
 app.use("/ultra-admin", ultraAdminRouter);
+app.use("/ultra-admin/master-category", masterCategoryRouter);
 
 // super admin routes
 app.use("/super-admin", superAdminRouter);
