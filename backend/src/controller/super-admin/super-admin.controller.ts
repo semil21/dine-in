@@ -55,9 +55,13 @@ export const adminLogin = expressAsyncHandler(
 
       const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-      const auth_token = jsw.sign({ id: verifyEmail?._id }, jwtSecretKey, {
-        expiresIn: "1d",
-      });
+      const auth_token = jsw.sign(
+        { id: verifyEmail?._id, role: verifyEmail?.role },
+        jwtSecretKey,
+        {
+          expiresIn: "1d",
+        },
+      );
 
       if (auth_token) {
         res
