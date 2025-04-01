@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import SuperAdmin from "../../schema/super-admin/super-admin";
 import dotenv from "dotenv";
-import jsw from "jsonwebtoken";
+import jws from "jsonwebtoken";
 
 dotenv.config();
 
@@ -55,7 +55,7 @@ export const adminLogin = expressAsyncHandler(
 
       const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-      const auth_token = jsw.sign(
+      const auth_token = jws.sign(
         { id: verifyEmail?._id, role: verifyEmail?.role },
         jwtSecretKey,
         {
