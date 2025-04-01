@@ -40,6 +40,10 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  status: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const Restaurant = mongoose.model("Restaurant", restaurantSchema);
