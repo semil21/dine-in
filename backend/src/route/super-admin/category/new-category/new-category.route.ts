@@ -1,9 +1,14 @@
 import express from "express";
 import { createNewCategory } from "../../../../controller/super-admin/category/new-category/new-category.controller";
 import verifySuperAdminToken from "../../../../middleware/super-admin/super-admin.middleware";
+import { approveNewCategory } from "../../../../controller/ultra-admin/new-category/new-category.controller";
 
-const newCategoryRouter = express.Router();
+const newCategorySuperAdminRouter = express.Router();
 
-newCategoryRouter.post("/create", verifySuperAdminToken, createNewCategory);
+newCategorySuperAdminRouter.post(
+  "/create",
+  verifySuperAdminToken,
+  createNewCategory,
+);
 
-export default newCategoryRouter;
+export default newCategorySuperAdminRouter;
