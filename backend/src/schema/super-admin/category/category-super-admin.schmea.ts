@@ -15,9 +15,6 @@ const superAdminCategorySchema = new mongoose.Schema({
   },
 });
 
-const SuperAdminCategory = mongoose.model(
-  "SuperAdminCategory",
-  superAdminCategorySchema,
-);
+const Category = mongoose.model("Category", superAdminCategorySchema);
 
-export default SuperAdminCategory;
+export default Category;

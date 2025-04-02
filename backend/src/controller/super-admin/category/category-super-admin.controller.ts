@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import SuperAdminCategory from "../../../schema/super-admin/category/category-super-admin.schmea";
+import Category from "../../../schema/super-admin/category/category-super-admin.schmea";
+import mongoose from "mongoose";
 
 export const saveNewCategory = async (req: Request, res: Response) => {
   try {
-    const saveCategoryRecord = await SuperAdminCategory.create(req.body);
+    const saveCategoryRecord = await Category.create(req.body);
 
     if (saveCategoryRecord) {
       res.status(200).send({ response: saveCategoryRecord });
@@ -24,9 +25,39 @@ export const getAllCategoriesOfRestaurant = async (
   try {
     const { restaurantId } = req.params;
 
-    const fetchALlRestaurantsRecord = await SuperAdminCategory.find({
-      restaurant: restaurantId,
-    }).lean();
+    const fetchCategoriesAggregate = [
+      {
+        $match: {
+          restaurant: new mongoose.Types.ObjectId(restaurantId),
+        },
+      },
+      {
+        $lookup: {
+          from: "mastercategories",
+          localField: "category",
+          foreignField: "_id",
+          as: "result",
+        },
+      },
+      {
+        $unwind: {
+          path: "$result",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          restaurant: 1,
+          name: "$result.name",
+          status: 1,
+        },
+      },
+    ];
+
+    const fetchALlRestaurantsRecord = await Category.aggregate(
+      fetchCategoriesAggregate,
+    );
 
     if (fetchALlRestaurantsRecord) {
       res.status(200).send({ response: fetchALlRestaurantsRecord });
@@ -52,7 +83,7 @@ export const updateRestaurantCategoryStatus = async (
 
     const updatedStatus = status === true ? false : true;
 
-    const updateRecordStatus = await SuperAdminCategory.findByIdAndUpdate(
+    const updateRecordStatus = await Category.findByIdAndUpdate(
       { _id: categoryId },
       { status: updatedStatus },
       { new: true },
