@@ -9,6 +9,10 @@ const masterItemSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "SuperAdmin",
+  },
 });
 
 const MasterItem = mongoose.model("MasterItem", masterItemSchema);

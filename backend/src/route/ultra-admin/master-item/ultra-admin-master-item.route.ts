@@ -2,10 +2,13 @@ import express from "express";
 import verifyUltraAdminToken from "../../../middleware/ultra-admin/ultra-admin.middleware";
 import {
   createNewMasterItem,
+  getAllMasterItems,
   updateMasterItemStatus,
-} from "../../../controller/ultra-admin/master-item/master-item.controller";
+} from "../../../controller/ultra-admin/master-item/ultra-admin-master-item.controller";
 
 const ultraAdminMasterItemRouter = express.Router();
+
+ultraAdminMasterItemRouter.get("/", verifyUltraAdminToken, getAllMasterItems);
 
 ultraAdminMasterItemRouter.post(
   "/create",

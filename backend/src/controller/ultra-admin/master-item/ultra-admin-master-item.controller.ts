@@ -17,6 +17,22 @@ export const createNewMasterItem = async (req: Request, res: Response) => {
   }
 };
 
+export const getAllMasterItems = async (req: Request, res: Response) => {
+  try {
+    const fetchAllMAsterItem = await MasterItem.find().lean();
+
+    if (fetchAllMAsterItem) {
+      res.status(200).send({ response: fetchAllMAsterItem });
+    } else {
+      res.status(400).send({ response: "Failed to fetch all master items" });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .send({ response: "Server error, failed to fetch all master items" });
+  }
+};
+
 export const updateMasterItemStatus = async (req: Request, res: Response) => {
   try {
     const { masterItemId } = req.params;
