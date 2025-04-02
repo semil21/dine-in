@@ -8,6 +8,7 @@ import masterCategoryRouter from "./route/ultra-admin/master-category/master-cat
 import categorySuperAdminRouter from "./route/super-admin/category/category-super-admin.route";
 import newCategorySuperAdminRouter from "./route/super-admin/category/new-category/new-category.route";
 import newCategoryUlttraAdminRouter from "./route/ultra-admin/new-category/new-category.route";
+import ultraAdminMasterItemRouter from "./route/ultra-admin/master-item/ultra-admin-master-item.route";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ connectDatabase();
 app.use("/ultra-admin", ultraAdminRouter);
 app.use("/ultra-admin/master-category", masterCategoryRouter);
 app.use("/ultra-admin/new-category", newCategoryUlttraAdminRouter);
+app.use("/ultra-admuin/master-item", ultraAdminMasterItemRouter);
 
 // super admin routes
 app.use("/super-admin", superAdminRouter);
