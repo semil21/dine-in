@@ -1,0 +1,24 @@
+import mongoose from "mongoose";
+
+const itemVariationSchema = new mongoose.Schema({
+  item: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Items",
+  },
+  price: {
+    type: Number,
+    require: true,
+  },
+  quantity: {
+    type: String,
+    require: true,
+  },
+  status: {
+    type: Boolean,
+    default: true,
+  },
+});
+
+const ItemVariation = mongoose.model("ItemVariation", itemVariationSchema);
+
+export default ItemVariation;
