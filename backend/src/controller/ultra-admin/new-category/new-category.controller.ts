@@ -1,35 +1,10 @@
 import { Request, Response } from "express";
 import NewCategory from "../../../schema/super-admin/category/new-category/new-category.schema";
 import MasterCategory from "../../../schema/ultra-admin/master-category/master-category.schema";
-import mongoose from "mongoose";
+import { fetchNewCategoryUtils } from "../../../utils/ultra-admin/new-category.utils";
 export const getNewCategoriesRequest = async (req: Request, res: Response) => {
   try {
-    const fetchNEwCategoryPipeline = [
-      {
-        $lookup: {
-          from: "superadmins",
-          localField: "user",
-          foreignField: "_id",
-          as: "result",
-        },
-      },
-      {
-        $unwind: {
-          path: "$result",
-          preserveNullAndEmptyArrays: true,
-        },
-      },
-      {
-        $project: {
-          _id: 1,
-          name: 1,
-          isApproved: 1,
-          user_email: "$result.email",
-        },
-      },
-    ];
-
-    const fetchRecords = await NewCategory.aggregate(fetchNEwCategoryPipeline);
+    const fetchRecords = await NewCategory.aggregate(fetchNewCategoryUtils);
 
     if (fetchRecords) {
       res.status(200).send({ response: fetchRecords });

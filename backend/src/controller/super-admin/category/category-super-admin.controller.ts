@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Category from "../../../schema/super-admin/category/category-super-admin.schmea";
 import mongoose from "mongoose";
+import { fetchAllUserCategoriesUtils } from "../../../utils/super-admin/get-all-user-categories.utils";
 
 export const saveNewCategory = async (req: Request, res: Response) => {
   try {
@@ -25,38 +26,10 @@ export const getAllCategoriesOfRestaurant = async (
   try {
     const { restaurantId } = req.params;
 
-    const fetchCategoriesAggregate = [
-      {
-        $match: {
-          restaurant: new mongoose.Types.ObjectId(restaurantId),
-        },
-      },
-      {
-        $lookup: {
-          from: "mastercategories",
-          localField: "category",
-          foreignField: "_id",
-          as: "result",
-        },
-      },
-      {
-        $unwind: {
-          path: "$result",
-          preserveNullAndEmptyArrays: true,
-        },
-      },
-      {
-        $project: {
-          _id: 1,
-          restaurant: 1,
-          name: "$result.name",
-          status: 1,
-        },
-      },
-    ];
+    const fetchCategoriesPipeline = fetchAllUserCategoriesUtils(restaurantId);
 
     const fetchALlRestaurantsRecord = await Category.aggregate(
-      fetchCategoriesAggregate,
+      fetchCategoriesPipeline,
     );
 
     if (fetchALlRestaurantsRecord) {

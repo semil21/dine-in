@@ -1,5 +1,6 @@
 import { Reqeust, Response } from "express";
 import MasterItem from "../../../schema/ultra-admin/master-item/master-item.schema";
+import { getAllActiveMasterItemsPipeline } from "../../../utils/super-admin/get-all-active-master-items.utils";
 
 export const createMasterItem = async (req: Request, res: Response) => {
   try {
@@ -19,22 +20,8 @@ export const createMasterItem = async (req: Request, res: Response) => {
 
 export const getAllActiveMAsterItems = async (req: Request, res: Response) => {
   try {
-    const getAllActiveMAsterItemsPipeline = [
-      {
-        $match: {
-          status: true,
-        },
-      },
-      {
-        $project: {
-          _id: 1,
-          name: 1,
-        },
-      },
-    ];
-
     const fetchAllItems = await MasterItem.aggregate(
-      getAllActiveMAsterItemsPipeline,
+      getAllActiveMasterItemsPipeline,
     );
 
     if (fetchAllItems) {
