@@ -13,7 +13,7 @@ const restaurantSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  district: {
+  area: {
     type: String,
     require: true,
   },

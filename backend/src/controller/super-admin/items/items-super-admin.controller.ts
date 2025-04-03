@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import ItemDetails from "../../../schema/super-admin/items-detail/items-detail.schema";
+import Items from "../../../schema/super-admin/items/items.schema";
 import mongoose from "mongoose";
 
 export const createNewItemDetail = async (req: Request, res: Response) => {
   try {
     req.body.user = req.body.id;
-    const saveNewItemDetail = await ItemDetails.create(req.body);
+    const saveNewItemDetail = await Items.create(req.body);
 
     if (saveNewItemDetail) {
       res.status(200).send({ response: saveNewItemDetail });
@@ -31,9 +31,7 @@ export const getAllItemsOfUser = async (req: Request, res: Response) => {
       },
     ];
 
-    const fetchAllUserItms = await ItemDetails.aggregate(
-      fetchAllItemOfUserPipeline,
-    );
+    const fetchAllUserItms = await Items.aggregate(fetchAllItemOfUserPipeline);
 
     if (fetchAllUserItms) {
       res.status(200).send({ response: fetchAllUserItms });
