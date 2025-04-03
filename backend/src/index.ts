@@ -10,6 +10,7 @@ import newCategorySuperAdminRouter from "./route/super-admin/category/new-catego
 import newCategoryUlttraAdminRouter from "./route/ultra-admin/new-category/new-category.route";
 import ultraAdminMasterItemRouter from "./route/ultra-admin/master-item/ultra-admin-master-item.route";
 import superAdminMasterItemRouter from "./route/super-admin/master-item/super-admin-master-item.route";
+import itemDetailRouter from "./route/super-admin/items-detail/items-detail-super-admin.route";
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use("/super-admin/restaurant", restaurantSuperAdminRouter);
 app.use("/super-admin/category", categorySuperAdminRouter);
 app.use("/super-admin/new-category", newCategorySuperAdminRouter);
 app.use("/super-admin/master-item", superAdminMasterItemRouter);
+app.use("/super-admin/items-detail", itemDetailRouter);
 
 app.listen(process.env.MONGODB_PORT, () => {
   console.log(`Server running on port ${process.env.MONGODB_PORT}`);
