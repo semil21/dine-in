@@ -3,9 +3,17 @@ import verifySuperAdminToken from "../../../middleware/super-admin/super-admin.m
 import {
   getAllVariationsOfItem,
   newItemVariation,
+  updateItemVariation,
+  updateItemVAriationStatus,
 } from "../../../controller/super-admin/item-variation/item-varistion.controller";
 
 const itemVariationSuperAdminRouter = express.Router();
+
+itemVariationSuperAdminRouter.get(
+  "/get-variations/:itemId",
+  verifySuperAdminToken,
+  getAllVariationsOfItem,
+);
 
 itemVariationSuperAdminRouter.post(
   "/create",
@@ -13,10 +21,16 @@ itemVariationSuperAdminRouter.post(
   newItemVariation,
 );
 
-itemVariationSuperAdminRouter.get(
-  "/get-variations/:itemId",
+itemVariationSuperAdminRouter.put(
+  "/update-variation/:itemId",
   verifySuperAdminToken,
-  getAllVariationsOfItem,
+  updateItemVariation,
+);
+
+itemVariationSuperAdminRouter.put(
+  "/update-status/:itemId",
+  verifySuperAdminToken,
+  updateItemVAriationStatus,
 );
 
 export default itemVariationSuperAdminRouter;

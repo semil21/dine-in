@@ -41,3 +41,58 @@ export const getAllVariationsOfItem = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const updateItemVariation = async (req: Request, res: Response) => {
+  try {
+    const { itemId } = req.params;
+
+    const updateItemVariationRecord = await ItemVariation.findByIdAndUpdate(
+      { _id: itemId },
+      req.body,
+      { new: true },
+    );
+
+    if (updateItemVariationRecord) {
+      res.status(200).send({ respose: updateItemVariationRecord });
+    } else {
+      res
+        .status(400)
+        .send({ response: "Failed to update item variation data" });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .send({ response: "Server error, failed to update item variation" });
+  }
+};
+
+export const updateItemVAriationStatus = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const { itemId } = req.params;
+
+    const { status } = req.body;
+
+    const updatedStatus = status === true ? false : true;
+
+    const updateRecordStatus = await ItemVariation.findByIdAndUpdate(
+      { _id: itemId },
+      { status: updatedStatus },
+      { new: true },
+    );
+
+    if (updateRecordStatus) {
+      res.status(200).send({ response: updateRecordStatus?.status });
+    } else {
+      res
+        .status(400)
+        .send({ response: "Failed to update item variaion status" });
+    }
+  } catch (error) {
+    res.status(500).send({
+      response: "Server error, failed to update item variation status",
+    });
+  }
+};
