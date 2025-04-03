@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import Table from "../../../schema/super-admin/table-reservation/table-reservation.schema";
 import { fetchAllTablesOfRestaurantUtils } from "../../../utils/super-admin/get-all-restaurant-tables";
+import Table from "../../../schema/super-admin/table/table.schema";
 export const createNewTable = async (req: Request, res: Response) => {
   try {
     const saveTableRecord = await Table.create(req.body);

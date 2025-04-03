@@ -1,28 +1,27 @@
 import mongoose from "mongoose";
 
-const tableSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "SuperAdmin",
-  },
+const tableReservationSchema = new mongoose.Schema({
   restaurant: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Restaurant",
   },
-  number: {
+  table: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Table",
+  },
+  time: {
     type: String,
     require: true,
   },
-  capacity: {
-    type: Number,
+  date: {
+    type: String,
     require: true,
-  },
-  status: {
-    type: Boolean,
-    default: true,
   },
 });
 
-const Table = mongoose.model("Table", tableSchema);
+const TableReservation = mongoose.model(
+  "TableReservation",
+  tableReservationSchema,
+);
 
-export default Table;
+export default TableReservation;
