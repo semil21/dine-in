@@ -12,6 +12,7 @@ import ultraAdminMasterItemRouter from "./route/ultra-admin/master-item/ultra-ad
 import superAdminMasterItemRouter from "./route/super-admin/master-item/super-admin-master-item.route";
 import itemRouter from "./route/super-admin/items/items-super-admin.route";
 import itemVariationSuperAdminRouter from "./route/super-admin/item-variation/item-variation.route";
+import tableRouter from "./route/super-admin/table/table.route";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use("/super-admin/new-category", newCategorySuperAdminRouter);
 app.use("/super-admin/master-item", superAdminMasterItemRouter);
 app.use("/super-admin/items-detail", itemRouter);
 app.use("/super-admin/item-variation", itemVariationSuperAdminRouter);
+app.use("/super-admin/table", tableRouter);
 
 app.listen(process.env.MONGODB_PORT, () => {
   console.log(`Server running on port ${process.env.MONGODB_PORT}`);
