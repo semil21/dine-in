@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Items from "../../../schema/super-admin/items/items.schema";
 import mongoose from "mongoose";
+import { getAllUserItemsUtils } from "../../../utils/super-admin/get-all-user-items.utils";
 
 export const createNewItemDetail = async (req: Request, res: Response) => {
   try {
@@ -23,18 +24,12 @@ export const getAllItemsOfUser = async (req: Request, res: Response) => {
   try {
     const { userId } = req.params;
 
-    const fetchAllItemOfUserPipeline = [
-      {
-        $match: {
-          user: new mongoose.Types.ObjectId(userId),
-        },
-      },
-    ];
+    const fetchAllUserItemsPipeline = getAllUserItemsUtils(userId);
 
-    const fetchAllUserItms = await Items.aggregate(fetchAllItemOfUserPipeline);
+    const fetchAllUserItems = await Items.aggregate(fetchAllUserItemsPipeline);
 
-    if (fetchAllUserItms) {
-      res.status(200).send({ response: fetchAllUserItms });
+    if (fetchAllUserItems) {
+      res.status(200).send({ response: fetchAllUserItems });
     } else {
       res.status(400).send({ response: "Failed to fetch all items of user" });
     }
