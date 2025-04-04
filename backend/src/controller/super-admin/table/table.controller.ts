@@ -3,6 +3,7 @@ import { fetchAllTablesOfRestaurantUtils } from "../../../utils/super-admin/get-
 import Table from "../../../schema/super-admin/table/table.schema";
 export const createNewTable = async (req: Request, res: Response) => {
   try {
+    req.body.user = req.body.id;
     const saveTableRecord = await Table.create(req.body);
     if (saveTableRecord) {
       res.status(200).send({ response: saveTableRecord });

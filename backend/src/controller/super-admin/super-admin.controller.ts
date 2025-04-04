@@ -39,7 +39,7 @@ export const adminLogin = expressAsyncHandler(
       const verifyEmail = await SuperAdmin.findOne({ email: email });
 
       if (!verifyEmail) {
-        res.staus(401).send({ response: "Email not found" });
+        res.status(401).send({ response: "Email not found" });
         return;
       }
 
