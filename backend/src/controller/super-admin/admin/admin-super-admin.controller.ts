@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import Admin from "../../../schema/admin/admin.schme";
+import Admin from "../../../schema/admin/admin.schmea";
 import bcrypt from "bcrypt";
 import { getAllAdminsOFUserUtils } from "../../../utils/super-admin/get-all-admins-of-user";
 
 export const createNewAdmin = async (req: Request, res: Response) => {
   try {
+    delete req.body.role;
     req.body.user = req.body.id;
     const { password } = req.body;
 

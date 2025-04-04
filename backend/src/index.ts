@@ -15,6 +15,7 @@ import itemVariationSuperAdminRouter from "./route/super-admin/item-variation/it
 import tableRouter from "./route/super-admin/table/table.route";
 import tableReservationRouter from "./route/super-admin/table-reservation/table-reservation.route";
 import adminSuperAdminRouter from "./route/super-admin/admin/admin-super-admin.route";
+import adminRouter from "./route/admin/admin.route";
 
 dotenv.config();
 
@@ -40,6 +41,9 @@ app.use("/super-admin/item-variation", itemVariationSuperAdminRouter);
 app.use("/super-admin/table", tableRouter);
 app.use("/super-admin/table-reservation", tableReservationRouter);
 app.use("/super-admin/admin", adminSuperAdminRouter);
+
+// admin routes
+app.use("/admin", adminRouter);
 
 app.listen(process.env.MONGODB_PORT, () => {
   console.log(`Server running on port ${process.env.MONGODB_PORT}`);
