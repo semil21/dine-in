@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import Items from "../../../schema/super-admin/items/items.schema";
-import mongoose from "mongoose";
 import { getAllUserItemsUtils } from "../../../utils/super-admin/get-all-user-items.utils";
 
 export const createNewItemDetail = async (req: Request, res: Response) => {

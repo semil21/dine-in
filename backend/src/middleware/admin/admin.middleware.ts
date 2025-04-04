@@ -23,10 +23,15 @@ const verifyAdminToken = async (
         res.status(401).send({ response: "invalid token" });
       }
 
-      const { id, role } = decoded as { id: string; role: string };
+      const { id, role, restaurant } = decoded as {
+        id: string;
+        role: string;
+        restaurant: string;
+      };
 
       req.body.id = id;
       req.body.role = role;
+      req.body.restaurant = restaurant;
 
       next();
     });

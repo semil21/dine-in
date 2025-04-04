@@ -29,6 +29,7 @@ export const adminLogin = async (req: Request, res: Response) => {
       {
         id: verifyEmail?._id,
         role: verifyEmail?.role,
+        restaurant: verifyEmail?.restaurant,
       },
       jwtSecretKey,
       { expiresIn: "1d" },
