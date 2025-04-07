@@ -13,7 +13,7 @@ const verifyUltraAdminToken = async (
     const token = req.headers.authorization;
 
     if (!token) {
-      res.status(404).send({ response: "No token found" });
+      res.status(404).send({ result: "No token found" });
       return;
     }
 
@@ -21,7 +21,7 @@ const verifyUltraAdminToken = async (
 
     jwt.verify(token, jwtSecretKey, (err, decoded) => {
       if (err) {
-        res.status(400).send({ response: "Invalid token" });
+        res.status(400).send({ result: "Invalid token" });
       }
 
       const { id, role } = decoded as { id: string; role: string };
@@ -32,7 +32,7 @@ const verifyUltraAdminToken = async (
       next();
     });
   } catch (error) {
-    res.status(500).send({ response: "Server error, failed to verify token" });
+    res.status(500).send({ result: "Server error, failed to verify token" });
   }
 };
 

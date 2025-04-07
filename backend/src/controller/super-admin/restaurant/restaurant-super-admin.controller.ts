@@ -10,14 +10,14 @@ export const saveNewRestaurant = async (req: Request, res: Response) => {
     const saveRestaurantRecord = await Restaurant.create(req.body);
 
     if (saveRestaurantRecord) {
-      res.status(200).send({ response: saveRestaurantRecord });
+      res.status(200).send({ result: saveRestaurantRecord });
     } else {
-      res.status(400).send({ response: "Failed to add new restaurant" });
+      res.status(400).send({ result: "Failed to add new restaurant" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed  to save new restaurant" });
+      .send({ result: "Server error, failed  to save new restaurant" });
   }
 };
 
@@ -31,14 +31,14 @@ export const getAllRestaurantsOfSuperAdmin = async (
     const fetchAllRestaurants = await Restaurant.find({ admin: id });
 
     if (fetchAllRestaurants) {
-      res.status(200).send({ response: fetchAllRestaurants });
+      res.status(200).send({ result: fetchAllRestaurants });
     } else {
-      res.status(400).send({ response: "Failed to fetch all restaurants" });
+      res.status(400).send({ result: "Failed to fetch all restaurants" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to fetch all restaurants" });
+      .send({ result: "Server error, failed to fetch all restaurants" });
   }
 };
 
@@ -56,16 +56,16 @@ export const updateRestaurant = async (req: Request, res: Response) => {
 
     if (updateRestaurantRecord) {
       res.status(200).send({
-        response: updateRestaurantRecord,
+        result: updateRestaurantRecord,
         message: "Restaurant updated successfully",
       });
     } else {
-      res.status(400).send({ response: "Failed to update restaurant" });
+      res.status(400).send({ result: "Failed to update restaurant" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error,failed to update restaurant" });
+      .send({ result: "Server error,failed to update restaurant" });
   }
 };
 
@@ -89,9 +89,9 @@ export const updateRestaurantStatus = async (req: Request, res: Response) => {
         message: "Restaurant status updated successfully.",
       });
     } else {
-      res.status(400).send({ response: "Failed to update restaurant status " });
+      res.status(400).send({ result: "Failed to update restaurant status " });
     }
   } catch (error) {
-    res.status(500).send({ response: "Failed to update restaurat status" });
+    res.status(500).send({ result: "Failed to update restaurat status" });
   }
 };

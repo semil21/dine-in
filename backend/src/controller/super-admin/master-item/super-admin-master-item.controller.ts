@@ -7,14 +7,14 @@ export const createMasterItem = async (req: Request, res: Response) => {
     const saveNewMasterItem = await MasterItem.create(req.body);
 
     if (saveNewMasterItem) {
-      res.status(200).send({ response: saveNewMasterItem });
+      res.status(200).send({ result: saveNewMasterItem });
     } else {
-      res.status(400).send({ response: "Failed to add new master item" });
+      res.status(400).send({ result: "Failed to add new master item" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to add new master item" });
+      .send({ result: "Server error, failed to add new master item" });
   }
 };
 
@@ -25,13 +25,13 @@ export const getAllActiveMAsterItems = async (req: Request, res: Response) => {
     );
 
     if (fetchAllItems) {
-      res.status(200).send({ response: fetchAllItems });
+      res.status(200).send({ result: fetchAllItems });
     } else {
-      res.status(400).send({ response: "Failed to fetch master items" });
+      res.status(400).send({ result: "Failed to fetch master items" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to fetch master items" });
+      .send({ result: "Server error, failed to fetch master items" });
   }
 };

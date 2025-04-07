@@ -6,14 +6,14 @@ export const newTableReservation = async (req: Request, res: Response) => {
     const saveTableReservationRecord = await TableReservation.create(req.body);
 
     if (saveTableReservationRecord) {
-      res.status(200).send({ response: saveTableReservationRecord });
+      res.status(200).send({ result: saveTableReservationRecord });
     } else {
-      res.status(400).send({ response: "Failed to create table reservation" });
+      res.status(400).send({ result: "Failed to create table reservation" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to create table reservation" });
+      .send({ result: "Server error, failed to create table reservation" });
   }
 };
 
@@ -28,14 +28,14 @@ export const updateTableReservation = async (req: Request, res: Response) => {
     );
 
     if (updateReservationRecord) {
-      res.status(200).send({ response: updateReservationRecord });
+      res.status(200).send({ result: updateReservationRecord });
     } else {
-      res.status(400).send({ response: "Failed to update table reservation" });
+      res.status(400).send({ result: "Failed to update table reservation" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to update table reservation" });
+      .send({ result: "Server error, failed to update table reservation" });
   }
 };
 
@@ -49,13 +49,13 @@ export const deleteReservation = async (req: Request, res: Response) => {
     );
 
     if (deleteReservationRecord) {
-      res.status(200).send({ response: "Reservaion delete successfully" });
+      res.status(200).send({ result: "Reservaion delete successfully" });
     } else {
-      res.status(400).send({ response: "Failed to delete table reservation" });
+      res.status(400).send({ result: "Failed to delete table reservation" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to delete table reservation" });
+      .send({ result: "Server error, failed to delete table reservation" });
   }
 };

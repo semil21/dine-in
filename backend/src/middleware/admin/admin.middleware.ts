@@ -13,14 +13,14 @@ const verifyAdminToken = async (
     const token = req.headers.authorization;
 
     if (!token) {
-      return res.status(401).send({ response: "Token not found" });
+      return res.status(401).send({ result: "Token not found" });
     }
 
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
     jwt.verify(token, jwtSecretKey, (err, decoded) => {
       if (err) {
-        res.status(401).send({ response: "invalid token" });
+        res.status(401).send({ result: "invalid token" });
       }
 
       const { id, role, restaurant } = decoded as {
@@ -38,7 +38,7 @@ const verifyAdminToken = async (
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to verify admin token" });
+      .send({ result: "Server error, failed to verify admin token" });
   }
 };
 

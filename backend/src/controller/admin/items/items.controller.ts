@@ -11,15 +11,15 @@ export const getActiveItems = async (req: Request, res: Response) => {
     const getActiveItemRecord = await Items.aggregate(getActiveItemPipeline);
 
     if (getActiveItemRecord) {
-      res.status(200).send({ response: getActiveItemRecord });
+      res.status(200).send({ result: getActiveItemRecord });
     } else {
       res
         .status(400)
-        .send({ response: "Failed to get all items of a restaurant" });
+        .send({ result: "Failed to get all items of a restaurant" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to get all active items" });
+      .send({ result: "Server error, failed to get all active items" });
   }
 };

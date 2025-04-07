@@ -6,14 +6,14 @@ export const saveNewMasterCategory = async (req: Request, res: Response) => {
     const saveMasterCategoryRecord = await MasterCategory.create(req.body);
 
     if (saveMasterCategoryRecord) {
-      res.status(200).send({ response: saveMasterCategoryRecord });
+      res.status(200).send({ result: saveMasterCategoryRecord });
     } else {
-      res.status(400).send({ response: "Failed to save new master category" });
+      res.status(400).send({ result: "Failed to save new master category" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to save new master category" });
+      .send({ result: "Server error, failed to save new master category" });
   }
 };
 
@@ -25,14 +25,14 @@ export const getAllACtiveMasterCategory = async (
     const fetchRecords = await MasterCategory.find({ status: true }).lean();
 
     if (fetchRecords) {
-      res.status(200).send({ response: fetchRecords });
+      res.status(200).send({ result: fetchRecords });
     } else {
-      res.status(400).send({ response: "Failed to fetch master category" });
+      res.status(400).send({ result: "Failed to fetch master category" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to fetch master category" });
+      .send({ result: "Server error, failed to fetch master category" });
   }
 };
 
@@ -60,11 +60,11 @@ export const updateMasterCategoryStatus = async (
     } else {
       res
         .status(400)
-        .send({ response: "Failed to update master category status" });
+        .send({ result: "Failed to update master category status" });
     }
   } catch (error) {
     res.status(500).send({
-      response: "Server error, failed to update master category status",
+      result: "Server error, failed to update master category status",
     });
   }
 };

@@ -11,7 +11,7 @@ export const adminLogin = async (req: Request, res: Response) => {
     const verifyEmail = await Admin.findOne({ email: email });
 
     if (!verifyEmail) {
-      return res.status(200).send({ response: "Email not found" });
+      return res.status(200).send({ result: "Email not found" });
     }
 
     const verifyPassword = await bcrypt.compare(
@@ -20,7 +20,7 @@ export const adminLogin = async (req: Request, res: Response) => {
     );
 
     if (!verifyPassword) {
-      return res.status(400).send({ response: "Incorrect password." });
+      return res.status(400).send({ result: "Incorrect password." });
     }
 
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
@@ -36,9 +36,9 @@ export const adminLogin = async (req: Request, res: Response) => {
     );
 
     if (auth_token) {
-      res.status(200).send({ response: auth_token });
+      res.status(200).send({ result: auth_token });
     } else {
-      res.status(400).send({ response: "Failed to log in" });
+      res.status(400).send({ result: "Failed to log in" });
     }
   } catch (error) {
     res.status(500).send();

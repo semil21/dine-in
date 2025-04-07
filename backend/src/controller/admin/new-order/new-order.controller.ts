@@ -11,14 +11,14 @@ export const createNewOrder = async (req: Request, res: Response) => {
     const saveNewOrder = await NewOrders.create(req.body);
 
     if (saveNewOrder) {
-      res.status(200).send({ response: saveNewOrder });
+      res.status(200).send({ result: saveNewOrder });
     } else {
-      res.status(400).send({ response: "Failed to create new order" });
+      res.status(400).send({ result: "Failed to create new order" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to create new order" });
+      .send({ result: "Server error, failed to create new order" });
   }
 };
 
@@ -36,13 +36,13 @@ export const getAllPedningOrderOFRestaurant = async (
     );
 
     if (fetchAllPendngOrdersPipeline) {
-      res.status(200).send({ response: fetchAllPendngOrdersPipeline });
+      res.status(200).send({ result: fetchAllPendngOrdersPipeline });
     } else {
-      res.status(400).send({ response: "Failed to get all pending order" });
+      res.status(400).send({ result: "Failed to get all pending order" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to get all pending order" });
+      .send({ result: "Server error, failed to get all pending order" });
   }
 };

@@ -19,15 +19,15 @@ export const saveNewUltraAdmin = async (req: Request, res: Response) => {
       const saveUltraADminRecord = await UltraAdmin.create(req.body);
 
       if (saveUltraADminRecord) {
-        res.status(200).send({ response: saveUltraADminRecord });
+        res.status(200).send({ result: saveUltraADminRecord });
       } else {
-        res.status(400).send({ response: "Failed to save new ultra admin" });
+        res.status(400).send({ result: "Failed to save new ultra admin" });
       }
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to save new ultra admin" });
+      .send({ result: "Server error, failed to save new ultra admin" });
   }
 };
 
@@ -38,7 +38,7 @@ export const ultraAdminLogin = async (req: Request, res: Response) => {
     const verifyEmail = await UltraAdmin.findOne({ email: email });
 
     if (!verifyEmail) {
-      return res.status(404).send({ response: "Email ot found" });
+      return res.status(404).send({ result: "Email ot found" });
     }
 
     const verifyPassword = await bcrypt.compare(
@@ -47,7 +47,7 @@ export const ultraAdminLogin = async (req: Request, res: Response) => {
     );
 
     if (!verifyPassword) {
-      res.status(404).send({ response: "Incorrect password" });
+      res.status(404).send({ result: "Incorrect password" });
       return;
     }
 
@@ -63,13 +63,13 @@ export const ultraAdminLogin = async (req: Request, res: Response) => {
     );
 
     if (auth_token) {
-      res.status(200).send({ response: auth_token, message: "Welcome back" });
+      res.status(200).send({ result: auth_token, message: "Welcome back" });
     } else {
-      res.status(400).send({ response: "Failed to log in" });
+      res.status(400).send({ result: "Failed to log in" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to login as ultra admin" });
+      .send({ result: "Server error, failed to login as ultra admin" });
   }
 };

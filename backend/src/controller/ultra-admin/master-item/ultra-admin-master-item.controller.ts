@@ -6,14 +6,14 @@ export const createNewMasterItem = async (req: Request, res: Response) => {
     const saveMasterItem = await MasterItem.create(req.body);
 
     if (saveMasterItem) {
-      res.status(200).send({ response: saveMasterItem });
+      res.status(200).send({ result: saveMasterItem });
     } else {
-      res.status(400).send({ response: "Failed to add new master item" });
+      res.status(400).send({ result: "Failed to add new master item" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to add new master item" });
+      .send({ result: "Server error, failed to add new master item" });
   }
 };
 
@@ -22,14 +22,14 @@ export const getAllMasterItems = async (req: Request, res: Response) => {
     const fetchAllMAsterItem = await MasterItem.find().lean();
 
     if (fetchAllMAsterItem) {
-      res.status(200).send({ response: fetchAllMAsterItem });
+      res.status(200).send({ result: fetchAllMAsterItem });
     } else {
-      res.status(400).send({ response: "Failed to fetch all master items" });
+      res.status(400).send({ result: "Failed to fetch all master items" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to fetch all master items" });
+      .send({ result: "Server error, failed to fetch all master items" });
   }
 };
 
@@ -48,14 +48,14 @@ export const updateMasterItemStatus = async (req: Request, res: Response) => {
 
     if (updatedMasterItemStatus) {
       res.status(200).send({
-        response: updatedMasterItemStatus?.status,
+        result: updatedMasterItemStatus?.status,
       });
     } else {
-      res.status(400).send({ response: "Failed to update restaurant status" });
+      res.status(400).send({ result: "Failed to update restaurant status" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to update master item status" });
+      .send({ result: "Server error, failed to update master item status" });
   }
 };

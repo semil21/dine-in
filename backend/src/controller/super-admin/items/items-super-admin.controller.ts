@@ -8,14 +8,14 @@ export const createNewItemDetail = async (req: Request, res: Response) => {
     const saveNewItemDetail = await Items.create(req.body);
 
     if (saveNewItemDetail) {
-      res.status(200).send({ response: saveNewItemDetail });
+      res.status(200).send({ result: saveNewItemDetail });
     } else {
-      res.status(400).send({ response: "Failed to add new item detail" });
+      res.status(400).send({ result: "Failed to add new item detail" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to add new item detail" });
+      .send({ result: "Server error, failed to add new item detail" });
   }
 };
 
@@ -28,13 +28,13 @@ export const getAllItemsOfUser = async (req: Request, res: Response) => {
     const fetchAllUserItems = await Items.aggregate(fetchAllUserItemsPipeline);
 
     if (fetchAllUserItems) {
-      res.status(200).send({ response: fetchAllUserItems });
+      res.status(200).send({ result: fetchAllUserItems });
     } else {
-      res.status(400).send({ response: "Failed to fetch all items of user" });
+      res.status(400).send({ result: "Failed to fetch all items of user" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to get all items of user" });
+      .send({ result: "Server error, failed to get all items of user" });
   }
 };

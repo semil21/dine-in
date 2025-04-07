@@ -7,13 +7,13 @@ export const createNewCategory = async (req: Request, res: Response) => {
 
     if (saveCategoryRecord) {
       res.status(200).send({
-        response:
+        result:
           "Request has been forwaded to Admin, New Category will be available once its approved.",
       });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to create new category" });
+      .send({ result: "Server error, failed to create new category" });
   }
 };

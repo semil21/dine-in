@@ -21,12 +21,12 @@ export const createNewSuperAdmin = expressAsyncHandler(
       const saveRecord = await SuperAdmin.create(req.body);
 
       if (saveRecord) {
-        res.status(200).send({ response: saveRecord });
+        res.status(200).send({ result: saveRecord });
       } else {
-        res.status(400).send({ response: "Failed to create new super admin" });
+        res.status(400).send({ result: "Failed to create new super admin" });
       }
     } catch (error) {
-      res.status(500).send({ response: "Failed to create new super admin" });
+      res.status(500).send({ result: "Failed to create new super admin" });
     }
   },
 );
@@ -39,7 +39,7 @@ export const adminLogin = expressAsyncHandler(
       const verifyEmail = await SuperAdmin.findOne({ email: email });
 
       if (!verifyEmail) {
-        res.status(401).send({ response: "Email not found" });
+        res.status(401).send({ result: "Email not found" });
         return;
       }
 
@@ -49,7 +49,7 @@ export const adminLogin = expressAsyncHandler(
       );
 
       if (!verifyPassword) {
-        res.status(401).send({ response: "Incorrect password" });
+        res.status(401).send({ result: "Incorrect password" });
         return;
       }
 
@@ -66,9 +66,9 @@ export const adminLogin = expressAsyncHandler(
       if (auth_token) {
         res
           .status(200)
-          .send({ auth_token: auth_token, response: "Logged in successfull." });
+          .send({ auth_token: auth_token, result: "Logged in successfull." });
       } else {
-        res.statua(401).send({ response: "Failed to login as super admin" });
+        res.statua(401).send({ result: "Failed to login as super admin" });
       }
     } catch (error) {
       console.log("Failed to login as super admin");

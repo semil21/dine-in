@@ -8,14 +8,14 @@ export const saveNewCategory = async (req: Request, res: Response) => {
     const saveCategoryRecord = await Category.create(req.body);
 
     if (saveCategoryRecord) {
-      res.status(200).send({ response: saveCategoryRecord });
+      res.status(200).send({ result: saveCategoryRecord });
     } else {
-      res.status(400).send({ response: "Failed to save new category" });
+      res.status(400).send({ result: "Failed to save new category" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to save new category" });
+      .send({ result: "Server error, failed to save new category" });
   }
 };
 
@@ -33,15 +33,15 @@ export const getAllCategoriesOfRestaurant = async (
     );
 
     if (fetchALlRestaurantsRecord) {
-      res.status(200).send({ response: fetchALlRestaurantsRecord });
+      res.status(200).send({ result: fetchALlRestaurantsRecord });
     } else {
       res
         .status(400)
-        .send({ response: "Failed to get all categories of a restaurant" });
+        .send({ result: "Failed to get all categories of a restaurant" });
     }
   } catch (error) {
     res.status(500).send({
-      response: "Server error, failed to get all categories of a restaurant",
+      result: "Server error, failed to get all categories of a restaurant",
     });
   }
 };
@@ -68,11 +68,11 @@ export const updateRestaurantCategoryStatus = async (
         message: "Category status updated successfully.",
       });
     } else {
-      res.status(400).send({ response: "Failed to update category status" });
+      res.status(400).send({ result: "Failed to update category status" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to update category status" });
+      .send({ result: "Server error, failed to update category status" });
   }
 };

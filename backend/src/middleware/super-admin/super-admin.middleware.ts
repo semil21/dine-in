@@ -12,7 +12,7 @@ const verifySuperAdminToken = async (
     const token = req.headers.authorization;
 
     if (!token) {
-      res.status(400).send({ response: "Token not found" });
+      res.status(400).send({ result: "Token not found" });
       return;
     }
 
@@ -20,7 +20,7 @@ const verifySuperAdminToken = async (
 
     jwt.verify(token, jwtSecretKey, (err, decoded) => {
       if (err) {
-        res.status(401).send({ response: "Invalid token" });
+        res.status(401).send({ result: "Invalid token" });
         return;
       }
 
@@ -32,7 +32,7 @@ const verifySuperAdminToken = async (
       next();
     });
   } catch (error) {
-    res.status(500).send({ response: "Server error, failed to verify token" });
+    res.status(500).send({ result: "Server error, failed to verify token" });
   }
 };
 

@@ -6,14 +6,14 @@ export const createNewTable = async (req: Request, res: Response) => {
     req.body.user = req.body.id;
     const saveTableRecord = await Table.create(req.body);
     if (saveTableRecord) {
-      res.status(200).send({ response: saveTableRecord });
+      res.status(200).send({ result: saveTableRecord });
     } else {
-      res.status(400).send({ response: "Failed to create new table" });
+      res.status(400).send({ result: "Failed to create new table" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to create new table" });
+      .send({ result: "Server error, failed to create new table" });
   }
 };
 
@@ -30,15 +30,15 @@ export const getAllTablesOfRestaurant = async (req: Request, res: Response) => {
     );
 
     if (getAllTabblesOfRestaurant) {
-      res.status(200).send({ response: getAllTabblesOfRestaurant });
+      res.status(200).send({ result: getAllTabblesOfRestaurant });
     } else {
       res
         .status(400)
-        .send({ response: "Failed to get all tables of restaurant" });
+        .send({ result: "Failed to get all tables of restaurant" });
     }
   } catch (error) {
     res.status(500).send({
-      response: "Server error, failed to get all tables of a restaurant",
+      result: "Server error, failed to get all tables of a restaurant",
     });
   }
 };
@@ -54,12 +54,12 @@ export const updateTable = async (req: Request, res: Response) => {
     );
 
     if (updateTableRecord) {
-      res.status(200).send({ response: updateTableRecord });
+      res.status(200).send({ result: updateTableRecord });
     } else {
-      res.status(400).send({ response: "Failed to update table record" });
+      res.status(400).send({ result: "Failed to update table record" });
     }
   } catch (error) {
-    res.status(500).send({ response: "Server error, failed to update table" });
+    res.status(500).send({ result: "Server error, failed to update table" });
   }
 };
 
@@ -78,13 +78,13 @@ export const updateTableStatus = async (req: Request, res: Response) => {
     );
 
     if (updateTableStatusRecord) {
-      res.status(200).send({ response: updateTableStatusRecord });
+      res.status(200).send({ result: updateTableStatusRecord });
     } else {
-      res.status(400).send({ response: "Faild to update table status" });
+      res.status(400).send({ result: "Faild to update table status" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to update table status" });
+      .send({ result: "Server error, failed to update table status" });
   }
 };

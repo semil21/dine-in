@@ -8,13 +8,13 @@ export const newItemVariation = async (req: Request, res: Response) => {
     const saveNewItemVariation = await ItemVariation.create(req.body);
 
     if (saveNewItemVariation) {
-      res.status(200).send({ response: saveNewItemVariation });
+      res.status(200).send({ result: saveNewItemVariation });
     } else
-      [res.status(400).send({ response: "Failed to add new item variation" })];
+      [res.status(400).send({ result: "Failed to add new item variation" })];
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to save new item variation." });
+      .send({ result: "Server error, failed to save new item variation." });
   }
 };
 
@@ -29,15 +29,15 @@ export const getAllVariationsOfItem = async (req: Request, res: Response) => {
     );
 
     if (fetchItemsVariations) {
-      res.status(200).send({ response: fetchItemsVariations });
+      res.status(200).send({ result: fetchItemsVariations });
     } else {
       res
         .status(400)
-        .send({ response: "Failed to get all variations of a item" });
+        .send({ result: "Failed to get all variations of a item" });
     }
   } catch (error) {
     res.status(500).send({
-      response: "server error, failed to get all variations of items",
+      result: "server error, failed to get all variations of items",
     });
   }
 };
@@ -55,14 +55,12 @@ export const updateItemVariation = async (req: Request, res: Response) => {
     if (updateItemVariationRecord) {
       res.status(200).send({ respose: updateItemVariationRecord });
     } else {
-      res
-        .status(400)
-        .send({ response: "Failed to update item variation data" });
+      res.status(400).send({ result: "Failed to update item variation data" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to update item variation" });
+      .send({ result: "Server error, failed to update item variation" });
   }
 };
 
@@ -84,15 +82,13 @@ export const updateItemVAriationStatus = async (
     );
 
     if (updateRecordStatus) {
-      res.status(200).send({ response: updateRecordStatus?.status });
+      res.status(200).send({ result: updateRecordStatus?.status });
     } else {
-      res
-        .status(400)
-        .send({ response: "Failed to update item variaion status" });
+      res.status(400).send({ result: "Failed to update item variaion status" });
     }
   } catch (error) {
     res.status(500).send({
-      response: "Server error, failed to update item variation status",
+      result: "Server error, failed to update item variation status",
     });
   }
 };

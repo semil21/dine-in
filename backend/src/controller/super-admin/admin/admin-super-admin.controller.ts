@@ -17,14 +17,14 @@ export const createNewAdmin = async (req: Request, res: Response) => {
     const saveNewAdmin = await Admin.create(req.body);
 
     if (saveNewAdmin) {
-      res.status(200).send({ response: saveNewAdmin });
+      res.status(200).send({ result: saveNewAdmin });
     } else {
-      res.status(400).send({ response: "Failed to create new admin" });
+      res.status(400).send({ result: "Failed to create new admin" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to create new admin" });
+      .send({ result: "Server error, failed to create new admin" });
   }
 };
 
@@ -37,14 +37,14 @@ export const getAllAdminsOfUser = async (req: Request, res: Response) => {
     const fetchAllAdmins = await Admin.aggregate(fetchAllAdminsPipeline);
 
     if (fetchAllAdmins) {
-      res.status(200).send({ response: fetchAllAdmins });
+      res.status(200).send({ result: fetchAllAdmins });
     } else {
-      res.status(400).send({ response: "Failed to fetch all admins data" });
+      res.status(400).send({ result: "Failed to fetch all admins data" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to get all admins data" });
+      .send({ result: "Server error, failed to get all admins data" });
   }
 };
 
@@ -66,14 +66,14 @@ export const updateAdmin = async (req: Request, res: Response) => {
     );
 
     if (updateAdminRecord) {
-      res.status(200).send({ response: updateAdminRecord });
+      res.status(200).send({ result: updateAdminRecord });
     } else {
-      res.status(400).send({ response: "Failed to update admin" });
+      res.status(400).send({ result: "Failed to update admin" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to update admin record" });
+      .send({ result: "Server error, failed to update admin record" });
   }
 };
 
@@ -91,15 +91,13 @@ export const updateAdminStatus = async (req: Request, res: Response) => {
     );
 
     if (updatedRecordStatus) {
-      res.status(200).send({ response: updatedRecordStatus?.status });
+      res.status(200).send({ result: updatedRecordStatus?.status });
     } else {
-      res
-        .status(400)
-        .send({ response: "Server error, failed to update record" });
+      res.status(400).send({ result: "Server error, failed to update record" });
     }
   } catch (error) {
     res
       .status(500)
-      .send({ response: "Server error, failed to update admin status " });
+      .send({ result: "Server error, failed to update admin status " });
   }
 };
