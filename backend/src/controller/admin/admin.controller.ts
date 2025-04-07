@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Admin from "../../schema/admin/admin.schmea";
+import Admin from "../../schema/admin/admin.schema";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
