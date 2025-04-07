@@ -59,7 +59,7 @@ export const ultraAdminLogin = async (req: Request, res: Response) => {
         role: verifyEmail?.role,
       },
       jwtSecretKey,
-      { expiresIn: "1d" },
+      { expiresIn: "1m" },
     );
 
     if (auth_token) {

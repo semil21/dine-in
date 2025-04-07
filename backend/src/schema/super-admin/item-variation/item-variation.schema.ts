@@ -5,6 +5,10 @@ const itemVariationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Items",
   },
+  restaurant: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Restaurant",
+  },
   price: {
     type: Number,
     require: true,
