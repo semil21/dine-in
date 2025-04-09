@@ -1,2 +1,4 @@
 /backend/node_modules
 /backend/.env
+/ultra-admin/node_modules
+/ultra-admin/.env
