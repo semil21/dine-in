@@ -7,7 +7,6 @@ const ultraAdminLoginService = async (data: loginType) => {
     if (adminLogin?.status === 200) {
       localStorage.setItem("session_id", adminLogin?.data?.result);
     }
-    console.log("adminLogin123", adminLogin?.status);
 
     return adminLogin;
   } catch (error) {
