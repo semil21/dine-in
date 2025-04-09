@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { orderCheckoutUtils } from "../../../utils/admin/order-checkout.utils";
 import NewOrderDetail from "../../../schema/admin/new-order-detail/new-order-detail.schema";
+import NewOrders from "../../../schema/admin/new-order/new-order.schema";
 
 export const orderCheckout = async (req: Request, res: Response) => {
   try {
@@ -17,12 +18,17 @@ export const orderCheckout = async (req: Request, res: Response) => {
       },
       0,
     );
-    console.log("totalBill :", totalBill);
 
     const [stateGst, centralGst] = await Promise.all([
       totalBill * 0.09,
       totalBill * 0.09,
     ]);
+
+    const updateTotal = await NewOrders.findByIdAndUpdate(
+      { _id: orderId },
+      { total: totalBill, GST: stateGst, IGST: centralGst },
+      { new: true },
+    );
 
     const grandTotal = totalBill + stateGst + centralGst;
 

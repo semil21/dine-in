@@ -24,7 +24,8 @@ const newOrderSchema = new mongoose.Schema(
       enum: ["pending", "completed", "cancelled"],
     },
     isCompleted: {
-      type: String,
+      type: Boolean,
+      default: false,
     },
     paymentCompleted: {
       type: Boolean,
@@ -33,6 +34,22 @@ const newOrderSchema = new mongoose.Schema(
     paymentMode: {
       type: String,
       default: false,
+    },
+    total: {
+      type: Number,
+      default: 0,
+    },
+    netPayment: {
+      type: Number,
+      default: 0,
+    },
+    GST: {
+      type: Number,
+      defaut: 0,
+    },
+    IGST: {
+      type: Number,
+      default: 0,
     },
   },
   { timestamps: true },
