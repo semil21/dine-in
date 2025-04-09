@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
-
 const verifyAdminToken = async (
   req: Request,
   res: Response,
@@ -20,7 +19,7 @@ const verifyAdminToken = async (
 
     jwt.verify(token, jwtSecretKey, (err, decoded) => {
       if (err) {
-        res.status(401).send({ result: "invalid token" });
+        return res.status(401).send({ result: "invalid token" });
       }
 
       const { id, role, restaurant } = decoded as {

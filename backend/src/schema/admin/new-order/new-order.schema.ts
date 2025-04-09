@@ -23,6 +23,17 @@ const newOrderSchema = new mongoose.Schema(
       default: "pending",
       enum: ["pending", "completed", "cancelled"],
     },
+    isCompleted: {
+      type: String,
+    },
+    paymentCompleted: {
+      type: Boolean,
+      default: false,
+    },
+    paymentMode: {
+      type: String,
+      default: false,
+    },
   },
   { timestamps: true },
 );

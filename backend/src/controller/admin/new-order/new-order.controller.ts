@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import NewOrders from "../../../schema/admin/new-order/new-order.schema";
 import { getAllPendingOrdersOfRestaurantUtils } from "../../../utils/admin/get-all-pending-orders.utils";
-
 export const createNewOrder = async (req: Request, res: Response) => {
   try {
     req.body.admin = req.body.id;
