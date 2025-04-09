@@ -38,7 +38,7 @@ export const ultraAdminLogin = async (req: Request, res: Response) => {
     const verifyEmail = await UltraAdmin.findOne({ email: email });
 
     if (!verifyEmail) {
-      return res.status(404).send({ result: "Email ot found" });
+      return res.status(404).send({ result: "Email not found" });
     }
 
     const verifyPassword = await bcrypt.compare(

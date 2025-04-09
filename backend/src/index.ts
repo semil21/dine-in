@@ -1,6 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
+
 import { connectDatabase } from "./database/database";
+
 import superAdminRouter from "./route/super-admin/super-admin.route";
 import restaurantSuperAdminRouter from "./route/super-admin/restaurant/restaurant-super-admin.route";
 import ultraAdminRouter from "./route/ultra-admin/ultra-admin.route";
@@ -25,6 +28,7 @@ import adminPaymentRouter from "./route/admin/payment/payment.route";
 dotenv.config();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 connectDatabase();

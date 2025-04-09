@@ -1,8 +1,11 @@
 "use client";
+import { loginType } from "@/_types/login.types";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import { useLoginHook } from "@/_hooks/login/login.hook.";
+import { ToastContainer, toast } from "react-toastify";
+import { AxiosError } from "axios";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -10,17 +13,27 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<loginType>();
 
-  const onSubmit = (data: any) => {
-    console.log("Submitted Data:", data);
+  const { mutate } = useLoginHook();
+  const onSubmit = async (data: loginType) => {
+    mutate(data, {
+      onSuccess: (response) => {
+        toast.success(response?.data?.message);
+      },
+      onError: (error) => {
+        if (error instanceof AxiosError) {
+          toast.error(error.response?.data?.result);
+        }
+      },
+    });
   };
 
   return (
     <div className="grid place-content-center h-screen">
       <div className="bg-[#f9f7f7] px-14 py-10 grid gap-6 shadow-lg text-black rounded-lg w-96">
         <h2 className="text-center text-2xl font-semibold">Logo</h2>
-
+        <ToastContainer position="top-center" autoClose={2500} />
         <div className="grid gap-2">
           <label className="text-base font-medium">Email</label>
           <input
