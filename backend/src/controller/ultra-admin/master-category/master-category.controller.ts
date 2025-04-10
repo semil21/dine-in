@@ -17,6 +17,22 @@ export const saveNewMasterCategory = async (req: Request, res: Response) => {
   }
 };
 
+export const getAllCategories = async (req: Request, res: Response) => {
+  try {
+    const fetchAllCategories = await MasterCategory.find().lean();
+
+    if (fetchAllCategories) {
+      res.status(200).send({ result: fetchAllCategories });
+    } else {
+      res.status(400).send({ result: "Failed to get all categories" });
+    }
+  } catch (error) {
+    res
+      .status(500)
+      .send({ result: "Server error, failed to get all active categories." });
+  }
+};
+
 export const getAllACtiveMasterCategory = async (
   req: Request,
   res: Response,

@@ -22,6 +22,7 @@ const verifyUltraAdminToken = async (
     jwt.verify(token, jwtSecretKey, (err, decoded) => {
       if (err) {
         res.status(400).send({ result: "Invalid token" });
+        return;
       }
 
       const { id, role } = decoded as { id: string; role: string };

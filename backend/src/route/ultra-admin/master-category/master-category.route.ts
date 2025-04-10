@@ -2,6 +2,7 @@ import express from "express";
 import verifyUltraAdminToken from "../../../middleware/ultra-admin/ultra-admin.middleware";
 import {
   getAllACtiveMasterCategory,
+  getAllCategories,
   saveNewMasterCategory,
   updateMasterCategoryStatus,
 } from "../../../controller/ultra-admin/master-category/master-category.controller";
@@ -12,6 +13,12 @@ masterCategoryRouter.post(
   "/create",
   verifyUltraAdminToken,
   saveNewMasterCategory,
+);
+
+masterCategoryRouter.get(
+  "/all-categories",
+  verifyUltraAdminToken,
+  getAllCategories,
 );
 
 masterCategoryRouter.get(
