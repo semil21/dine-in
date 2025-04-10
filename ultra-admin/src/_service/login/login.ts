@@ -1,4 +1,4 @@
-import { loginType } from "@/_types/login.types";
+import { loginType } from "@/_types/login.type";
 import axios from "axios";
 const ultraAdminLoginService = async (data: loginType) => {
   const base_url = process.env.NEXT_PUBLIC_API_BASE_URL;

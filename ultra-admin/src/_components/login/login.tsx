@@ -1,5 +1,5 @@
 "use client";
-import { loginType } from "@/_types/login.types";
+import { loginType } from "@/_types/login.type";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
