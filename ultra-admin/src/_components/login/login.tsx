@@ -1,13 +1,17 @@
 "use client";
 import { loginType } from "@/_types/login.types";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useLoginHook } from "@/_hooks/login/login.hook.";
 import { ToastContainer, toast } from "react-toastify";
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const router = useRouter();
 
   const {
     register,
@@ -20,6 +24,7 @@ const Login = () => {
     mutate(data, {
       onSuccess: (response) => {
         toast.success(response?.data?.message);
+        router.push("/dashboard");
       },
       onError: (error) => {
         if (error instanceof AxiosError) {
@@ -28,6 +33,14 @@ const Login = () => {
       },
     });
   };
+
+  useEffect(() => {
+    const session_id = localStorage.getItem("session_id");
+
+    if (session_id) {
+      router.push("/dashboard");
+    }
+  }, [mutate]);
 
   return (
     <div className="grid place-content-center h-screen">
