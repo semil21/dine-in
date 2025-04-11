@@ -1,4 +1,4 @@
-import CategoryDataTable from "@/app/_components/category/CategoryDataTable";
+import CategoryDataTable from "@/app/_components/category/categoryDataTable";
 import React from "react";
 
 const page = () => {

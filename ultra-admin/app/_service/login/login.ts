@@ -11,6 +11,10 @@ export const loginService = async (data: loginType) => {
       data,
     );
 
+    if (login?.status === 200) {
+      localStorage.setItem("session_id", login?.data?.result);
+    }
+
     return login?.data?.token;
   } catch (error) {
     throw error;

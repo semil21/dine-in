@@ -1,14 +1,19 @@
 "use client";
-import { useAllCategoryHook } from "@/app/_hooks/category/category.hook";
+import {
+  useAllCategoryHook,
+  useUpdateCategoryStatusHooko,
+} from "@/app/_hooks/category/category.hook";
 import React, { useState } from "react";
 import date from "date-and-time";
 import CutomSkeleton from "../custom-skeleton/cutomSkeleton";
 import { categoryType } from "@/app/_types/category";
+import AddCategoryModal from "./addCategoryModal";
 const CategoryDataTable = () => {
   const [searchCategory, setSearchCategory] = useState("");
 
   const { data, error, isPending } = useAllCategoryHook();
 
+  const { mutate } = useUpdateCategoryStatusHooko();
   const now = new Date();
 
   date.format(now, "ddd, MMM DD YYYY");
@@ -17,15 +22,26 @@ const CategoryDataTable = () => {
     item?.name?.toLowerCase().includes(searchCategory.toLowerCase()),
   );
 
+  const handleCategoryStatusUpdate = (data: {
+    _id?: string;
+    status?: boolean;
+  }) => {
+    if (data._id && data.status !== undefined) {
+      mutate({ _id: data._id, status: data.status });
+    }
+  };
+
   return (
     <>
-      <div className="mt-4">
+      <div className="mt-4 flex  justify-between gap-6">
         <input
           type="text"
           className="border-2 border-gray-300 rounded-md p-2 w-80"
           placeholder="Search Category Here...."
           onChange={(e) => setSearchCategory(e.target.value)}
         />
+
+        <AddCategoryModal />
       </div>
       {!isPending && !error ? (
         <div className="relative w-full h-full overflow-x-auto text-gray-700 bg-white shadow-md rounded-lg bg-clip-border my-4">
@@ -65,15 +81,21 @@ const CategoryDataTable = () => {
                     </td>
                     <td className="p-4 border-b py-5">
                       <p className="w-[7rem] text-base font-medium text-gray-700">
-                        {item.status ? (
-                          <span className="text-green-600 font-semibold">
-                            Active
-                          </span>
-                        ) : (
-                          <span className="text-red-600 font-semibold">
-                            Inactive
-                          </span>
-                        )}
+                        {
+                          <button
+                            className={`w-20 px-2 py-1 rounded-lg text-white ${
+                              item?.status ? "bg-green-600" : "bg-red-600"
+                            }`}
+                            onClick={() =>
+                              handleCategoryStatusUpdate({
+                                _id: item._id,
+                                status: item.status,
+                              })
+                            }
+                          >
+                            {item?.status ? "Active" : "Inactive"}
+                          </button>
+                        }
                       </p>
                     </td>
                     <td className="p-4 border-b py-5">
