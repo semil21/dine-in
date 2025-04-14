@@ -5,7 +5,7 @@ import {
 } from "@/app/_hooks/new-category/new-category.hook";
 import React from "react";
 import CutomSkeleton from "../custom-skeleton/cutomSkeleton";
-import { newMasterCategoryType } from "@/app/_types/new-master-category";
+import { newMasterCategoryType } from "@/app/_types/new-master-category.type";
 import date from "date-and-time";
 import Swal from "sweetalert2";
 

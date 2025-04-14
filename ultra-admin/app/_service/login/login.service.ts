@@ -1,4 +1,4 @@
-import { loginType } from "@/app/_types/login";
+import { loginType } from "@/app/_types/login.type";
 import axios from "axios";
 import dotenv from "dotenv";
 

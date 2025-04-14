@@ -1,7 +1,7 @@
 import {
   getAllNewCategoriesService,
   approveNewCategoryService,
-} from "@/app/_service/new-category/new-category";
+} from "@/app/_service/new-category/new-category.service";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useFetchAllNEwCategoriesHook = () => {

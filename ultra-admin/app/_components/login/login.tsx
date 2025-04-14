@@ -1,6 +1,6 @@
 "use client";
 import { useLoginHook } from "@/app/_hooks/login/login.hook";
-import { loginType } from "@/app/_types/login";
+import { loginType } from "@/app/_types/login.type";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";

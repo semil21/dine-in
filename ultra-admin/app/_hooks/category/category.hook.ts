@@ -2,8 +2,8 @@ import {
   addMasterCategoryService,
   getAllMasterCategoryService,
   updateCategoryStatusService,
-} from "@/app/_service/category/category";
-import { categoryType } from "@/app/_types/category";
+} from "@/app/_service/category/category.service";
+import { categoryType } from "@/app/_types/category.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useAllCategoryHook = () => {

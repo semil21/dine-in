@@ -6,7 +6,7 @@ import {
 import React, { useState } from "react";
 import date from "date-and-time";
 import CutomSkeleton from "../custom-skeleton/cutomSkeleton";
-import { categoryType } from "@/app/_types/category";
+import { categoryType } from "@/app/_types/category.type";
 import AddCategoryModal from "./addCategoryModal";
 const CategoryDataTable = () => {
   const [searchCategory, setSearchCategory] = useState("");

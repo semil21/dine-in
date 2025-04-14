@@ -7,6 +7,7 @@ import { HiOutlineHome } from "react-icons/hi";
 import { MdOutlineLogin } from "react-icons/md";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { ChartBarStacked } from "lucide-react";
+import { MdOutlineFastfood } from "react-icons/md";
 
 export default function DashboardLayout({
   children,
@@ -71,6 +72,13 @@ export default function DashboardLayout({
                 </Link>
               </ul>
             )}
+
+            <Link href="/dashboard/items">
+              <li className="flex items-center gap-3 text-black hover:bg-blue-600 hover:text-white p-2">
+                <MdOutlineFastfood className="text-2xl" />
+                <span className="block text-xl font-bold">Items</span>
+              </li>
+            </Link>
           </ul>
         </nav>
 
