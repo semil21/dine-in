@@ -6,12 +6,30 @@ export const getAllNewCategoriesService = async () => {
       `${siteConfig.base_url}/ultra-admin/new-category`,
       {
         headers: {
-          authorization: siteConfig.auth_token,
+          Authorization: siteConfig.auth_token,
         },
       },
     );
 
     return fetchAllNewCategories?.data?.result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const approveNewCategoryService = async (newCategoryId: string) => {
+  try {
+    const updateNewCategoryStatus = await axios.put(
+      `${siteConfig.base_url}/ultra-admin/new-category/approve-category/${newCategoryId}`,
+      {},
+      {
+        headers: {
+          Authorization: siteConfig.auth_token,
+        },
+      },
+    );
+
+    return updateNewCategoryStatus?.data?.result;
   } catch (error) {
     throw error;
   }

@@ -20,6 +20,7 @@ export const fetchNewCategoryUtils = [
       isApproved: 1,
       user: 1,
       user_email: "$result.email",
+      createdAt: 1,
     },
   },
 ];
