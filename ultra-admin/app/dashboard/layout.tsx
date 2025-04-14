@@ -64,9 +64,9 @@ export default function DashboardLayout({
                     All Categories
                   </li>
                 </Link>
-                <Link href="/dashboard/category2">
+                <Link href="/dashboard/new-category">
                   <li className="py-2 px-7 text-black hover:bg-blue-300 rounded">
-                    Category 2
+                    New Categories
                   </li>
                 </Link>
               </ul>

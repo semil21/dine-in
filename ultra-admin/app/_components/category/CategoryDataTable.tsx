@@ -33,10 +33,10 @@ const CategoryDataTable = () => {
 
   return (
     <>
-      <div className="mt-4 flex  justify-between gap-6">
+      <div className="mt-4 flex flex-col md:flex-row lg:flex-row  justify-between gap-6  ">
         <input
           type="text"
-          className="border-2 border-gray-300 rounded-md p-2 w-80"
+          className="border-2 border-gray-300 rounded-lg p-2 w-80"
           placeholder="Search Category Here...."
           onChange={(e) => setSearchCategory(e.target.value)}
         />

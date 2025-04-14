@@ -22,7 +22,7 @@ const AddCategoryModal = () => {
   return (
     <>
       <button
-        className="custombgcolor px-4 py-1 rounded-xl text-base font-medium"
+        className="custombgcolor px-4 py-2 rounded-lg text-base font-medium"
         onClick={() => setShowModal(true)}
       >
         Add New Category
