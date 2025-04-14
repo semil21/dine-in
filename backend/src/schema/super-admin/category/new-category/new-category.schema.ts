@@ -18,6 +18,6 @@ const newCategorySchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const NewCategory = mongoose.model("NewCategory", newCategorySchema);
+const NewCategory = mongoose.model("new_category", newCategorySchema);
 
 export default NewCategory;

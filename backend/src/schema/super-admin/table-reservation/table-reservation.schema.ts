@@ -16,7 +16,7 @@ const tableReservationSchema = new mongoose.Schema({
 });
 
 const TableReservation = mongoose.model(
-  "TableReservation",
+  "table_reservations",
   tableReservationSchema,
 );
 

@@ -3,6 +3,7 @@ import NewCategory from "../../../../schema/super-admin/category/new-category/ne
 
 export const createNewCategory = async (req: Request, res: Response) => {
   try {
+    req.body.user = req.body.id;
     const saveCategoryRecord = await NewCategory.create(req.body);
 
     if (saveCategoryRecord) {

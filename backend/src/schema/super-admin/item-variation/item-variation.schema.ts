@@ -23,6 +23,6 @@ const itemVariationSchema = new mongoose.Schema({
   },
 });
 
-const ItemVariation = mongoose.model("ItemVariation", itemVariationSchema);
+const ItemVariation = mongoose.model("Item_Variation", itemVariationSchema);
 
 export default ItemVariation;

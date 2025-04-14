@@ -14,6 +14,6 @@ const masterCategorySchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const MasterCategory = mongoose.model("MasterCategory", masterCategorySchema);
+const MasterCategory = mongoose.model("Master_Category", masterCategorySchema);
 
 export default MasterCategory;

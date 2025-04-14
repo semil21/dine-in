@@ -55,6 +55,6 @@ const newOrderSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const NewOrders = mongoose.model("NewOrders", newOrderSchema);
+const NewOrders = mongoose.model("New_Orders", newOrderSchema);
 
 export default NewOrders;

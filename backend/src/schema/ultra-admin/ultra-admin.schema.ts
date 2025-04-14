@@ -15,6 +15,6 @@ const ultraAdminSchema = new mongoose.Schema({
   },
 });
 
-const UltraAdmin = mongoose.model("UltraAdmin", ultraAdminSchema);
+const UltraAdmin = mongoose.model("Ultra_Admins", ultraAdminSchema);
 
 export default UltraAdmin;

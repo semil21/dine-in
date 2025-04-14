@@ -8,7 +8,7 @@ export const fetchAllUserCategoriesUtils = (restaurantId: string) => [
   },
   {
     $lookup: {
-      from: "mastercategories",
+      from: "master_categories",
       localField: "category",
       foreignField: "_id",
       as: "result",

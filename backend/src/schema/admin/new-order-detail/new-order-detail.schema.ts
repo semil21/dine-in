@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const newOrderDetailSchema = new mongoose.Schema({
   order: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "NewOrders",
+    ref: "New_Orders",
     require: true,
   },
   item: {
@@ -21,6 +21,9 @@ const newOrderDetailSchema = new mongoose.Schema({
   },
 });
 
-const NewOrderDetail = mongoose.model("NewOrderDetail", newOrderDetailSchema);
+const NewOrderDetail = mongoose.model(
+  "new_order_details",
+  newOrderDetailSchema,
+);
 
 export default NewOrderDetail;

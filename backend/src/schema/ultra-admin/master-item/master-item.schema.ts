@@ -15,6 +15,6 @@ const masterItemSchema = new mongoose.Schema({
   },
 });
 
-const MasterItem = mongoose.model("MasterItem", masterItemSchema);
+const MasterItem = mongoose.model("Master_Item", masterItemSchema);
 
 export default MasterItem;

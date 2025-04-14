@@ -8,7 +8,7 @@ export const getAllUserItemsUtils = (userId: string) => [
   },
   {
     $lookup: {
-      from: "mastercategories",
+      from: "master_categories",
       localField: "category",
       foreignField: "_id",
       as: "category_result",
@@ -26,7 +26,7 @@ export const getAllUserItemsUtils = (userId: string) => [
 
   {
     $lookup: {
-      from: "masteritems",
+      from: "master_items",
       localField: "master_item",
       foreignField: "_id",
       as: "items_result",

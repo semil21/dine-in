@@ -8,7 +8,7 @@ export const orderCheckoutUtils = (orderId: string) => [
   },
   {
     $lookup: {
-      from: "itemvariations",
+      from: "item_variations",
       localField: "item",
       foreignField: "_id",
       as: "stage_one_result",
@@ -34,7 +34,7 @@ export const orderCheckoutUtils = (orderId: string) => [
   },
   {
     $lookup: {
-      from: "masteritems",
+      from: "master_items",
       localField: "stage_two_result.master_item",
       foreignField: "_id",
       as: "stage_three_result",
