@@ -26,6 +26,9 @@ const verifySuperAdminToken = async (
 
       const { id, role } = decoded as { id: string; role: string };
 
+      if (role !== "super-admin") {
+        return res.status(401).send({ result: "Access denied" });
+      }
       req.body.id = id;
       req.body.role = role;
 

@@ -28,6 +28,10 @@ const verifyAdminToken = async (
         restaurant: string;
       };
 
+      if (role !== "waiter" || "manager" || "chef") {
+        return res.status(401).send({ result: "Access denied" });
+      }
+
       req.body.id = id;
       req.body.role = role;
       req.body.restaurant = restaurant;
