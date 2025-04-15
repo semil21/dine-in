@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 import { useRouter } from "next/navigation";
 
@@ -27,9 +28,9 @@ const Login = () => {
   const onSubmit = (data: loginType) => {
     loginService.mutate(data, {
       onSuccess: (loginData) => {
-        toast.success("Welcom Back.");
-        router.push("/dashboard");
-        sessionStorage.setItem("session_id", loginData);
+        toast.success("Welcome Back.");
+        // router.push("/dashboard");
+        localStorage.setItem("session_id", loginData);
       },
       onError: () => {
         toast.error("Something went wrong. Please try again.", {
@@ -95,6 +96,29 @@ const Login = () => {
                 )}
               </div>
 
+              <div className="flex flex-col gap-2">
+                <label className="text-sm md:text-base font-medium">
+                  Email
+                </label>
+                <select
+                  className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  {...register("role", { required: true })}
+                >
+                  <option value="" disabled>
+                    Select a role
+                  </option>
+                  <option value="super-admin">Owner</option>
+                  <option value="admin">Waiter</option>
+                  <option value="admin">Manager</option>
+                </select>
+
+                {errors.role && (
+                  <span className="text-red-600 text-sm">
+                    Please select a role.
+                  </span>
+                )}
+              </div>
+
               <button
                 type="submit"
                 className="w-full bg-blue-500 text-white py-2 rounded-md text-lg hover:bg-blue-600 transition duration-300"
@@ -103,6 +127,13 @@ const Login = () => {
                 {/* {isPending ? "Submitting" : "Submit"} */}
                 Login
               </button>
+
+              <div className="text-center ">
+                Don't have an account ?
+                <Link href="/signup" className="font-medium text-blue-600 px-2">
+                  Sign up here
+                </Link>
+              </div>
             </form>
           </div>
         </div>

@@ -2,3 +2,5 @@
 /backend/.env
 /ultra-admin/node_modules
 /ultra-admin/.env
+/super-admin/node_modules
+/super-admin/.env
