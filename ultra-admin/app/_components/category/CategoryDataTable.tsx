@@ -1,7 +1,7 @@
 "use client";
 import {
   useAllCategoryHook,
-  useUpdateCategoryStatusHooko,
+  useUpdateCategoryStatusHook,
 } from "@/app/_hooks/category/category.hook";
 import React, { useState } from "react";
 import date from "date-and-time";
@@ -13,7 +13,7 @@ const CategoryDataTable = () => {
 
   const { data, error, isPending } = useAllCategoryHook();
 
-  const { mutate } = useUpdateCategoryStatusHooko();
+  const { mutate } = useUpdateCategoryStatusHook();
   const now = new Date();
 
   date.format(now, "ddd, MMM DD YYYY");

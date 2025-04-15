@@ -1,8 +1,12 @@
 "use client";
-import { useGetAllMasterItemsHook } from "@/app/_hooks/item/item.hook";
+import {
+  useGetAllMasterItemsHook,
+  useItemStatusHook,
+} from "@/app/_hooks/item/item.hook";
 import React, { useState } from "react";
 import CutomSkeleton from "../custom-skeleton/cutomSkeleton";
 import { itemType } from "@/app/_types/item.type";
+import AddItemModal from "./addItemModal";
 const ItemsDataTable = () => {
   const [searchItem, setSearchItem] = useState("");
 
@@ -12,6 +16,14 @@ const ItemsDataTable = () => {
     item?.name?.toLowerCase().includes(searchItem.toLowerCase()),
   );
 
+  const { mutate } = useItemStatusHook();
+
+  const handleItemStatusUpdate = async (data: {
+    _id: string;
+    status: boolean;
+  }) => {
+    await mutate(data);
+  };
   return (
     <>
       <div className="mt-4 flex flex-col md:flex-row lg:flex-row  justify-between gap-6  ">
@@ -22,8 +34,7 @@ const ItemsDataTable = () => {
           onChange={(e) => setSearchItem(e.target.value)}
         />
 
-        {/* <AddCategoryModal /> */}
-        <p> add ne wmaster item modal.</p>
+        <AddItemModal />
       </div>
       {!isPending ? (
         <div className="relative w-full h-full overflow-x-auto text-gray-700 bg-white shadow-md rounded-lg bg-clip-border my-4">
@@ -63,12 +74,12 @@ const ItemsDataTable = () => {
                             className={`w-20 px-2 py-1 rounded-lg text-white ${
                               item?.status ? "bg-green-600" : "bg-red-600"
                             }`}
-                            // onClick={() =>
-                            //   handleCategoryStatusUpdate({
-                            //     _id: item._id,
-                            //     status: item.status,
-                            //   })
-                            // }
+                            onClick={() =>
+                              handleItemStatusUpdate({
+                                _id: item?._id ?? "",
+                                status: item?.status ?? false,
+                              })
+                            }
                           >
                             {item?.status ? "Active" : "Inactive"}
                           </button>

@@ -28,7 +28,7 @@ export const useAddNewMasterCategoryHook = () => {
   });
 };
 
-export const useUpdateCategoryStatusHooko = () => {
+export const useUpdateCategoryStatusHook = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
