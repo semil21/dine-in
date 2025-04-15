@@ -24,6 +24,7 @@ import adminNewOrderRouter from "./route/admin/new-order/new-order.route";
 import adminNewOrderDetail from "./route/admin/new-order-detail/new-order-detail.schema";
 import adminOrderCheckoutRouter from "./route/admin/order-check-out/order-checkout.route";
 import adminPaymentRouter from "./route/admin/payment/payment.route";
+import ultraAdminDashboardRouter from "./route/ultra-admin/dashboard/ultra-admin-dashboard.route";
 
 dotenv.config();
 
@@ -38,6 +39,7 @@ app.use("/ultra-admin", ultraAdminRouter);
 app.use("/ultra-admin/master-category", masterCategoryRouter);
 app.use("/ultra-admin/new-category", newCategoryUlttraAdminRouter);
 app.use("/ultra-admuin/master-item", ultraAdminMasterItemRouter);
+app.use("/ultra-admuin/dashboard", ultraAdminDashboardRouter);
 
 // super admin routes
 app.use("/super-admin", superAdminRouter);
