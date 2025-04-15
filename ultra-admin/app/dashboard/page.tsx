@@ -4,8 +4,7 @@ import HomePage from "../_components/home-page";
 const page = () => {
   return (
     <div>
-      {/* <HomePage /> */}
-      home page
+      <HomePage />
     </div>
   );
 };
