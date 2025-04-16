@@ -29,7 +29,7 @@ const Login = () => {
     loginService.mutate(data, {
       onSuccess: (loginData) => {
         toast.success("Welcome Back.");
-        // router.push("/dashboard");
+        router.push("/dashboard");
         localStorage.setItem("session_id", loginData);
       },
       onError: () => {
@@ -122,9 +122,7 @@ const Login = () => {
               <button
                 type="submit"
                 className="w-full bg-blue-500 text-white py-2 rounded-md text-lg hover:bg-blue-600 transition duration-300"
-                // disabled={isPending}
               >
-                {/* {isPending ? "Submitting" : "Submit"} */}
                 Login
               </button>
 
