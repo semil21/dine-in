@@ -1,3 +1,4 @@
+import { RestaurantType } from "@/app/_types/restaurant.type";
 import axiosInstance from "@/app/config/api-instance";
 export const getAllRestaurantsOfUserService = async () => {
   try {
@@ -26,13 +27,14 @@ export const updateRestaurantStatusService = async (data: {
   }
 };
 
-export const addNewRestaurantService = async (data) => {
+export const addNewRestaurantService = async (data: RestaurantType) => {
   try {
     const saveNewRestaurant = await axiosInstance.post(
       "/super-admin/restaurant/create",
       data,
     );
 
+    console.log("1qwer34", saveNewRestaurant?.data?.result);
     return saveNewRestaurant?.data?.result;
   } catch (error) {
     throw error;

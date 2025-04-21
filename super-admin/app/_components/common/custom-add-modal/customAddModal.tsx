@@ -1,12 +1,10 @@
 "use client";
+import { useAddNewRestaurantHook } from "@/app/_hooks/super-admin/restaurant/restaurant.hook";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-const CustomAddModal = (props) => {
+const CustomAddModal = (props: any) => {
   const { modalDetails, type } = props;
   const [showModal, setShowModal] = useState(false);
-
-  console.log("jp123", modalDetails);
-  console.log("type1212", type);
 
   const {
     register,
@@ -15,11 +13,16 @@ const CustomAddModal = (props) => {
     reset,
   } = useForm();
 
-  const onSubmit = async (name: string) => {
-    // await mutate(name);
-    console.log("", name);
-    setShowModal(false);
-    reset();
+  console.log("type123", type);
+
+  const { mutate } = useAddNewRestaurantHook();
+  const onSubmit = async (data: any) => {
+    console.log("data123", data);
+    if (type === "restaurant") {
+      await mutate(data);
+      setShowModal(false);
+      reset();
+    }
   };
   return (
     <>
@@ -47,26 +50,47 @@ const CustomAddModal = (props) => {
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start justify-center ">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                      <h3
-                        className="text-base text-center font-semibold text-gray-900"
-                        id="modal-title"
-                      >
-                        Add New Category
-                      </h3>
+                      {modalDetails?.heading && (
+                        <h3
+                          className="text-base text-center font-semibold text-gray-900"
+                          id="modal-title"
+                        >
+                          {modalDetails?.heading}
+                        </h3>
+                      )}
                       <hr className="mt-2" />
-                      <div className="mt-2 flex flex-col gap-2">
-                        <input
-                          type="text"
-                          placeholder="Enter category name"
-                          className="border-[1px] border-gray-600 rounded-lg px-3 py-1 w-[18rem]"
-                          {...register("name", { required: true })}
-                        />
-                        {errors.name && (
-                          <span className="text-red-600 text-base">
-                            Category mame is required.
-                          </span>
-                        )}
-                      </div>
+                      {modalDetails?.formFields?.map(
+                        (input: any, index: number) => (
+                          <div key={index} className="mt-5">
+                            <label>{input?.label}</label>
+                            <div className="mt-2 flex flex-col gap-2">
+                              {input?.type === "textarea" ? (
+                                <textarea
+                                  placeholder={input?.placeholder}
+                                  className="border-[1px] border-gray-600 rounded-lg px-3 py-1 w-[18rem] h-24 resize-none"
+                                  {...register(`${input?.name}`, {
+                                    required: input?.required,
+                                  })}
+                                />
+                              ) : (
+                                <input
+                                  type={input?.type}
+                                  placeholder={input?.placeholder}
+                                  className="border-[1px] border-gray-600 rounded-lg px-3 py-1 w-[18rem]"
+                                  {...register(`${input?.name}`, {
+                                    required: input?.required,
+                                  })}
+                                />
+                              )}
+                              {errors[input.name] && (
+                                <span className="text-red-600 text-base">
+                                  {input?.error || `${input.label} is required`}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        ),
+                      )}
                     </div>
                   </div>
                 </div>
@@ -81,7 +105,10 @@ const CustomAddModal = (props) => {
                   <button
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      setShowModal(false);
+                      reset();
+                    }}
                   >
                     Cancel
                   </button>

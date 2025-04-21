@@ -1,7 +1,9 @@
 import {
+  addNewRestaurantService,
   getAllRestaurantsOfUserService,
   updateRestaurantStatusService,
 } from "@/app/_service/super-admin/restaurant/restaurant.controller";
+import { RestaurantType } from "@/app/_types/restaurant.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useGetRestaurantHook = () => {
@@ -29,6 +31,22 @@ export const useUpdateRestaurantStatusHook = () => {
           return item;
         });
       });
+    },
+  });
+};
+
+export const useAddNewRestaurantHook = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: addNewRestaurantService,
+
+    onSuccess: (data) => {
+      queryClient.setQueryData(
+        ["all-restaurants"],
+        (oldData: RestaurantType[]) => {
+          return [...oldData, data];
+        },
+      );
     },
   });
 };
