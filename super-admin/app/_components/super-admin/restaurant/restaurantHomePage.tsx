@@ -3,65 +3,31 @@ import { useGetRestaurantHook } from "@/app/_hooks/super-admin/restaurant/restau
 import React from "react";
 import CutomSkeleton from "../../common/custom-skeleton/cutomSkeleton";
 import CustomDataTable from "../../common/custom-data-table/customDataTable";
+import { restaurantTableColumns } from "@/app/_table_columns/super-admin/restaurant-table-columns";
+import { addNewRestaurantModal } from "@/app/_modal/super-admin/add-new-restaurant.modal";
 const RestaurantHomePage = () => {
   const { data, isPending } = useGetRestaurantHook();
 
-  const tableColumns = [
-    {
-      key: "name",
-      value: "Restaurant",
-    },
-    {
-      key: "address",
-      value: "Address",
-    },
-    {
-      key: "area",
-      value: "Area",
-    },
+  const tableColumns = restaurantTableColumns;
 
-    {
-      key: "city",
-      value: "City",
-    },
-    {
-      key: "state",
-      value: "State",
-    },
-    {
-      key: "email",
-      value: "Email",
-    },
+  const modalDetails = addNewRestaurantModal;
 
-    {
-      key: "contact",
-      value: "Contact",
-    },
-    {
-      key: "alternateContact",
-      value: "Alt Contact",
-    },
-
-    {
-      key: "gst",
-      value: "GST",
-    },
-    {
-      key: "status",
-      value: "Status",
-    },
-  ];
   return (
     <div>
       {!isPending ? (
-        <CustomDataTable
-          data={data}
-          columns={tableColumns}
-          type="restaurant"
-          heading="All Restaurants"
-        />
+        <div>
+          <CustomDataTable
+            data={data}
+            columns={tableColumns}
+            type="restaurant"
+            heading="All Restaurants"
+            modalDetails={modalDetails}
+          />
+        </div>
       ) : (
-        <CutomSkeleton />
+        <div className="flex justify-center items-center h-screen">
+          <CutomSkeleton />
+        </div>
       )}
     </div>
   );

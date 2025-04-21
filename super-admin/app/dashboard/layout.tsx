@@ -45,7 +45,7 @@ export default function DashboardLayout({
             filterAuthorizedRoutes?.map((navItem: RouteItem, index: number) => (
               <ul key={index}>
                 <Link href={navItem?.path}>
-                  <li className="flex items-center gap-3 text-black hover:bg-blue-600 hover:text-white p-2">
+                  <li className="flex items-center gap-3 text-black hover:bg-black hover:text-white p-2 ">
                     <span className="block text-xl font-bold">
                       {navItem?.label}
                     </span>
