@@ -2,41 +2,58 @@ import { RouteItem } from "../_types/routes.tye";
 
 export const authorizedRoutes: RouteItem[] = [
   {
-    path: "/restaurant",
-    label: "Restaurant",
+    path: "/dashboard/restaurant",
+    label: "restaurant",
     allowedRoles: ["super-admin"],
   },
-  { path: "/category", label: "Category", allowedRoles: ["super-admin"] },
-  { path: "/item", label: "Item", allowedRoles: ["super-admin"] },
+  {
+    path: "/category",
+    label: "category",
+    allowedRoles: ["super-admin"],
+  },
+  {
+    path: "/item",
+    label: "item",
+    allowedRoles: ["super-admin"],
+  },
   {
     path: "/item-variation",
-    label: "Item Variation",
-    allowedRoles: ["super-admin"],
-  },
-  { path: "/table", label: "Table", allowedRoles: ["super-admin"] },
-  {
-    path: "/table-reservation",
-    label: "Table Reservation",
+    label: "item-variation",
     allowedRoles: ["super-admin"],
   },
   {
-    path: "/new-order",
-    label: "New Order",
-    allowedRoles: ["super-admin", "manager", "waiter"],
+    path: "/staff",
+    label: "staff",
+    allowedRoles: ["super-admin"],
   },
   {
-    path: "/order-detail",
-    label: "Order Detail",
-    allowedRoles: ["super-admin", "manager", "waiter"],
+    path: "/table",
+    label: "table",
+    allowedRoles: ["super-admin", "manager"],
   },
   {
-    path: "/order-checkout",
-    label: "Order Checkout",
+    path: "/table reservation",
+    label: "table reservation",
     allowedRoles: ["super-admin", "manager"],
   },
   {
     path: "/payment",
-    label: "Payment",
+    label: "payment",
     allowedRoles: ["super-admin", "manager"],
+  },
+  {
+    path: "/new-order",
+    label: "new-order",
+    allowedRoles: ["super-admin", "manager", "waiter"],
+  },
+  {
+    path: "/order-detail",
+    label: "order-detail",
+    allowedRoles: ["super-admin", "manager", "waiter"],
+  },
+  {
+    path: "/order-checkout",
+    label: "order-checkout",
+    allowedRoles: ["super-admin", "manager", "waiter"],
   },
 ];

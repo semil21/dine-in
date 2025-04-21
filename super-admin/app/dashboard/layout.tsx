@@ -27,6 +27,7 @@ export default function DashboardLayout({
   const router = useRouter();
   const handleLogOut = async () => {
     localStorage.removeItem("session_id");
+    localStorage.removeItem("role");
     router.push("/");
   };
 

@@ -108,8 +108,9 @@ const Login = () => {
                     Select a role
                   </option>
                   <option value="super-admin">Owner</option>
-                  <option value="admin">Waiter</option>
-                  <option value="admin">Manager</option>
+                  <option value="manager">Manager</option>
+                  <option value="waiter">Waiter</option>
+                  <option value="chef">Chef</option>
                 </select>
 
                 {errors.role && (
