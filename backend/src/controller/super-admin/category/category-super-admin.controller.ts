@@ -24,9 +24,9 @@ export const getAllCategoriesOfRestaurant = async (
   res: Response,
 ) => {
   try {
-    const { restaurantId } = req.params;
+    const adminId = req.body.id;
 
-    const fetchCategoriesPipeline = fetchAllUserCategoriesUtils(restaurantId);
+    const fetchCategoriesPipeline = fetchAllUserCategoriesUtils(adminId);
 
     const fetchALlRestaurantsRecord = await Category.aggregate(
       fetchCategoriesPipeline,

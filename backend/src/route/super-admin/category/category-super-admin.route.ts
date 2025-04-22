@@ -9,7 +9,7 @@ import {
 const categorySuperAdminRouter = express.Router();
 
 categorySuperAdminRouter.get(
-  "/get-categories/:restaurantId",
+  "/get-categories",
   verifySuperAdminToken,
   getAllCategoriesOfRestaurant,
 );

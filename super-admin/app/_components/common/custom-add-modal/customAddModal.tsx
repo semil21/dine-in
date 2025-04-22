@@ -13,11 +13,8 @@ const CustomAddModal = (props: any) => {
     reset,
   } = useForm();
 
-  console.log("type123", type);
-
   const { mutate } = useAddNewRestaurantHook();
   const onSubmit = async (data: any) => {
-    console.log("data123", data);
     if (type === "restaurant") {
       await mutate(data);
       setShowModal(false);

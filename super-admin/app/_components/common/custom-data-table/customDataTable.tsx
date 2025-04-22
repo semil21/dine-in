@@ -59,8 +59,10 @@ const CustomDataTable = <T extends { _id: string; status?: boolean }>({
               ) : (
                 <th>No Columns Found</th>
               )}
+              <th className="px-8 py-4">Actions</th>
             </tr>
           </thead>
+
           <tbody>
             {data.map((item, index) => (
               <tr
@@ -90,6 +92,17 @@ const CustomDataTable = <T extends { _id: string; status?: boolean }>({
                     )}
                   </td>
                 ))}
+
+                <td className="py-4 px-8 border-b">
+                  <button
+                    className="bg-blue-600  text-white font-medium px-4 py-1.5 rounded-lg"
+                    onClick={() =>
+                      modalDetails?.onEdit && modalDetails.onEdit(item)
+                    }
+                  >
+                    Edit
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

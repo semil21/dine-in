@@ -5,6 +5,10 @@ const superAdminCategorySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Restaurant",
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Super_Admins",
+  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "MasterCategory",
