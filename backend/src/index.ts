@@ -47,7 +47,7 @@ app.use("/super-admin/restaurant", restaurantSuperAdminRouter);
 app.use("/super-admin/category", categorySuperAdminRouter);
 app.use("/super-admin/new-category", newCategorySuperAdminRouter);
 app.use("/super-admin/master-item", superAdminMasterItemRouter);
-app.use("/super-admin/items-detail", itemRouter);
+app.use("/super-admin/items", itemRouter);
 app.use("/super-admin/item-variation", itemVariationSuperAdminRouter);
 app.use("/super-admin/table", tableRouter);
 app.use("/super-admin/table-reservation", tableReservationRouter);
