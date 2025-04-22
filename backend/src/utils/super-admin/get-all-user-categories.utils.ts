@@ -5,7 +5,6 @@ export const fetchAllUserCategoriesUtils = (adminId: string) => [
       user: new mongoose.Types.ObjectId(adminId),
     },
   },
-
   {
     $lookup: {
       from: "master_categories",
@@ -35,15 +34,18 @@ export const fetchAllUserCategoriesUtils = (adminId: string) => [
     },
   },
   {
-    $project: {
-      _id: 1,
-      restaurant: 1,
-      restaurant_name: "$restaurant_result.name",
-      restaurant_address: "$restaurant_result.address",
-      restaurant_area: "$restaurant_result.area",
-      restaurant_city: "$restaurant_result.city",
-      category_name: "$category_result.name",
-      category_id: "$category_result._id",
+    $group: {
+      _id: "$restaurant",
+      restaurant_name: { $first: "$restaurant_result.name" },
+      restaurant_address: { $first: "$restaurant_result.address" },
+      restaurant_area: { $first: "$restaurant_result.area" },
+      restaurant_city: { $first: "$restaurant_result.city" },
+      categories: {
+        $push: {
+          category_id: "$category_result._id",
+          category_name: "$category_result.name",
+        },
+      },
     },
   },
 ];

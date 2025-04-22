@@ -3,12 +3,12 @@ import { RouteItem } from "../_types/routes.tye";
 export const authorizedRoutes: RouteItem[] = [
   {
     path: "/dashboard/restaurant",
-    label: "restaurant",
+    label: "Restaurant",
     allowedRoles: ["super-admin"],
   },
   {
-    path: "/category",
-    label: "category",
+    path: "/dashboard/category",
+    label: "Category",
     allowedRoles: ["super-admin"],
   },
   {
