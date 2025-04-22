@@ -1,6 +1,7 @@
 import {
   addNewRestaurantService,
   getAllRestaurantsOfUserService,
+  updateRestaurantService,
   updateRestaurantStatusService,
 } from "@/app/_service/super-admin/restaurant/restaurant.controller";
 import { RestaurantType } from "@/app/_types/restaurant.type";
@@ -45,6 +46,23 @@ export const useAddNewRestaurantHook = () => {
         ["all-restaurants"],
         (oldData: RestaurantType[]) => {
           return [...oldData, data];
+        },
+      );
+    },
+  });
+};
+
+export const useUpdateRestaurantHook = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: updateRestaurantService,
+    onSuccess: (data) => {
+      queryClient.setQueryData(
+        ["all-restaurants"],
+        (oldData: RestaurantType[] = []) => {
+          const updatedData = oldData.filter((item) => item._id !== data._id);
+          return [...updatedData, data];
         },
       );
     },

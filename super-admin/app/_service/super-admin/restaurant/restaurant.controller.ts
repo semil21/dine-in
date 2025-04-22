@@ -34,8 +34,22 @@ export const addNewRestaurantService = async (data: RestaurantType) => {
       data,
     );
 
-    console.log("1qwer34", saveNewRestaurant?.data?.result);
     return saveNewRestaurant?.data?.result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateRestaurantService = async (data: RestaurantType) => {
+  try {
+    const { _id } = data;
+    const updateRestaurantReord = await axiosInstance.put(
+      `/super-admin/restaurant/update/${_id}`,
+      data,
+    );
+
+    console.log("tter123", updateRestaurantReord?.data?.result);
+    return updateRestaurantReord?.data?.result;
   } catch (error) {
     throw error;
   }
