@@ -3,7 +3,7 @@ import {
   getAllRestaurantsOfUserService,
   updateRestaurantService,
   updateRestaurantStatusService,
-} from "@/app/_service/super-admin/restaurant/restaurant.controller";
+} from "@/app/_service/super-admin/restaurant/super-admin-restaurant.service";
 import { RestaurantType } from "@/app/_types/restaurant.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 

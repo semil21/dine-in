@@ -44,6 +44,7 @@ export const fetchAllUserCategoriesUtils = (adminId: string) => [
         $push: {
           category_id: "$category_result._id",
           category_name: "$category_result.name",
+          category_status: "$category_result.status",
         },
       },
     },

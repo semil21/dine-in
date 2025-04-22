@@ -44,8 +44,6 @@ const CustomDataTable = <T extends { _id: string; status?: boolean }>({
     setIsModalOpen(false);
   };
 
-  console.log("editData", editData);
-
   return (
     <>
       {heading && (
