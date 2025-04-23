@@ -8,6 +8,17 @@ import { getAllActiveMasterCategoriesUtils } from "../../../utils/super-admin/ge
 export const saveNewCategory = async (req: Request, res: Response) => {
   try {
     req.body.user = req.body.id;
+
+    const { restaurant, category } = req.body;
+
+    const checkCategoryExists = await Category.findOne({
+      restaurant: restaurant,
+      category: category,
+    });
+
+    if (checkCategoryExists) {
+      return res.status(400).send({ result: "Category already exists" });
+    }
     const saveCategoryRecord = await Category.create(req.body);
 
     if (saveCategoryRecord) {
