@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import Category from "../../../schema/super-admin/category/category-super-admin.schmea";
 import mongoose from "mongoose";
 import { fetchAllUserCategoriesUtils } from "../../../utils/super-admin/get-all-user-categories.utils";
+import MasterCategory from "../../../schema/ultra-admin/master-category/master-category.schema";
+import { getAllActiveMasterCategoriesUtils } from "../../../utils/super-admin/get-all-active-master-categories";
 
 export const saveNewCategory = async (req: Request, res: Response) => {
   try {
@@ -74,5 +76,32 @@ export const updateRestaurantCategoryStatus = async (
     res
       .status(500)
       .send({ result: "Server error, failed to update category status" });
+  }
+};
+
+export const getAllActiveMasterCategories = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const fetchAllMAsterCategoriesPipeline =
+      await getAllActiveMasterCategoriesUtils();
+
+    const fetchAllActiveMasterCategories = await MasterCategory.aggregate(
+      fetchAllMAsterCategoriesPipeline,
+    );
+
+    if (fetchAllActiveMasterCategories) {
+      res.status(200).send({ result: fetchAllActiveMasterCategories });
+    } else {
+      res
+        .status(400)
+        .send({ response: "Failed to get all active master categories." });
+    }
+  } catch (error) {
+    res.status(500).send({
+      response: "Server error, failed to get all active master categories.",
+      error: error,
+    });
   }
 };

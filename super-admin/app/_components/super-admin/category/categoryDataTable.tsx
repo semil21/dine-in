@@ -3,8 +3,12 @@ import React, { useState } from "react";
 import AddCategoryModal from "./addCategoryModal";
 const CategoryTable = ({ data }: any) => {
   const [showModal, setShowModal] = useState(false);
+  const [restaurantInfo, setRestaurantInfo] = useState({ name: "", area: "" });
 
-  const handleShowMddal = () => setShowModal(false);
+  const handleShowMddal = () => {
+    setShowModal(false);
+    setRestaurantInfo({ name: "", area: "" });
+  };
   return (
     <>
       <h1 className="text-center font-medium text-3xl bg-black text-white py-3">
@@ -21,9 +25,22 @@ const CategoryTable = ({ data }: any) => {
                 <p>{cat?.restaurant_city.toUpperCase()} </p>
               </div>
               <div>
-                <button onClick={() => setShowModal(true)}>Add </button>
+                <button
+                  onClick={() => {
+                    setShowModal(true);
+                    setRestaurantInfo({
+                      name: cat?.restaurant_name,
+                      area: cat?.restaurant_area,
+                    });
+                  }}
+                >
+                  Add
+                </button>
                 {showModal && (
-                  <AddCategoryModal handleShowMddal={handleShowMddal} />
+                  <AddCategoryModal
+                    handleShowMddal={handleShowMddal}
+                    restaurantInfo={restaurantInfo}
+                  />
                 )}
               </div>
             </div>

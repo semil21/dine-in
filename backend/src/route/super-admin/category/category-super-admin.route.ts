@@ -1,6 +1,7 @@
 import express from "express";
 import verifySuperAdminToken from "../../../middleware/super-admin/super-admin.middleware";
 import {
+  getAllActiveMasterCategories,
   getAllCategoriesOfRestaurant,
   saveNewCategory,
   updateRestaurantCategoryStatus,
@@ -12,6 +13,12 @@ categorySuperAdminRouter.get(
   "/get-categories",
   verifySuperAdminToken,
   getAllCategoriesOfRestaurant,
+);
+
+categorySuperAdminRouter.get(
+  "/active-master-categories",
+  verifySuperAdminToken,
+  getAllActiveMasterCategories,
 );
 
 categorySuperAdminRouter.post(
