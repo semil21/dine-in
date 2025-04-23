@@ -7,7 +7,6 @@ export const getAllActiveMasterCategoriesUtils = async () => [
   {
     $project: {
       _id: 1,
-      status: 1,
       name: 1,
     },
   },

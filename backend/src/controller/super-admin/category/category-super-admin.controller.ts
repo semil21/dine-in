@@ -7,6 +7,7 @@ import { getAllActiveMasterCategoriesUtils } from "../../../utils/super-admin/ge
 
 export const saveNewCategory = async (req: Request, res: Response) => {
   try {
+    req.body.user = req.body.id;
     const saveCategoryRecord = await Category.create(req.body);
 
     if (saveCategoryRecord) {

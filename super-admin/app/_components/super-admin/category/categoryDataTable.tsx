@@ -3,11 +3,15 @@ import React, { useState } from "react";
 import AddCategoryModal from "./addCategoryModal";
 const CategoryTable = ({ data }: any) => {
   const [showModal, setShowModal] = useState(false);
-  const [restaurantInfo, setRestaurantInfo] = useState({ name: "", area: "" });
+  const [restaurantInfo, setRestaurantInfo] = useState({
+    name: "",
+    area: "",
+    restaurantId: "",
+  });
 
   const handleShowMddal = () => {
     setShowModal(false);
-    setRestaurantInfo({ name: "", area: "" });
+    setRestaurantInfo({ name: "", area: "", restaurantId: "" });
   };
   return (
     <>
@@ -31,6 +35,7 @@ const CategoryTable = ({ data }: any) => {
                     setRestaurantInfo({
                       name: cat?.restaurant_name,
                       area: cat?.restaurant_area,
+                      restaurantId: cat?._id,
                     });
                   }}
                 >
