@@ -1,10 +1,10 @@
 "use client";
-import { useGetUSerCategoriesHoook } from "@/app/_hooks/super-admin/category/super-admin-category.hook";
+import { useGetUserCategoriesHook } from "@/app/_hooks/super-admin/category/super-admin-category.hook";
 import React from "react";
 import CutomSkeleton from "../../common/custom-skeleton/cutomSkeleton";
 import CategoryDataTable from "./categoryDataTable";
 const CategoryHomePage = () => {
-  const { data, isPending } = useGetUSerCategoriesHoook();
+  const { data, isPending } = useGetUserCategoriesHook();
 
   return (
     <div>

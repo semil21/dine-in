@@ -38,8 +38,8 @@ const AddCategoryModal = ({ handleShowMddal, restaurantInfo }: any) => {
     const category = selectedCategory;
 
     const data = { restaurant, category };
-    console.log("data :", data);
     await mutate(data);
+    handleShowMddal();
   };
   return (
     <>

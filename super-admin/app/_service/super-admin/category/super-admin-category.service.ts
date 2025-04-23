@@ -51,7 +51,7 @@ export const addNewCategoryService = async (data: {
       data,
     );
 
-    console.log("addNewCategory :>> ", addNewCategory);
+    return addNewCategory?.data?.result?.[0];
   } catch (error) {
     throw error;
   }

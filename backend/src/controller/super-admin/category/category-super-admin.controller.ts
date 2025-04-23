@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { fetchAllUserCategoriesUtils } from "../../../utils/super-admin/get-all-user-categories.utils";
 import MasterCategory from "../../../schema/ultra-admin/master-category/master-category.schema";
 import { getAllActiveMasterCategoriesUtils } from "../../../utils/super-admin/get-all-active-master-categories";
+import { populateNewCategoryUtils } from "../../../utils/super-admin/populate-new-category.utils";
 
 export const saveNewCategory = async (req: Request, res: Response) => {
   try {
@@ -21,8 +22,15 @@ export const saveNewCategory = async (req: Request, res: Response) => {
     }
     const saveCategoryRecord = await Category.create(req.body);
 
-    if (saveCategoryRecord) {
-      res.status(200).send({ result: saveCategoryRecord });
+    const newCreatedCategoryId = saveCategoryRecord?._id.toString();
+
+    const newCategoriesPipeline =
+      populateNewCategoryUtils(newCreatedCategoryId);
+
+    const populatedCategory = await Category.aggregate(newCategoriesPipeline);
+
+    if (populatedCategory) {
+      res.status(200).send({ result: populatedCategory });
     } else {
       res.status(400).send({ result: "Failed to save new category" });
     }
